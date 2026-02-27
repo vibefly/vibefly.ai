@@ -1,8 +1,8 @@
-name = "vibefly-ai-site"
+name = "vibefly-ai"
 compatibility_date = "2024-09-23"
 
 [assets]
 directory = "./htdocs"
 
 [env.dev]
-name = "vibefly-ai-site-dev"
+name = "vibefly-ai-dev"
