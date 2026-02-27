@@ -261,71 +261,71 @@ h3 {
 
 /* Thick chunky band — stacked color rows like corrupted macroblocks */
 .hero-glitch__band--1 {
-    height: 24px;
+    height: 50px;
     background: repeating-linear-gradient(180deg,
-        rgba(255, 30, 60, 0.5) 0px,
-        rgba(255, 30, 60, 0.5) 3px,
-        rgba(0, 200, 255, 0.4) 3px,
-        rgba(0, 200, 255, 0.4) 5px,
-        rgba(60, 120, 255, 0.6) 5px,
-        rgba(60, 120, 255, 0.6) 8px,
-        transparent 8px,
-        transparent 10px,
-        rgba(245, 255, 26, 0.35) 10px,
-        rgba(245, 255, 26, 0.35) 12px,
-        rgba(255, 30, 60, 0.3) 12px,
-        rgba(255, 30, 60, 0.3) 14px,
+        rgba(255, 30, 60, 0.12) 0px,
+        rgba(255, 30, 60, 0.12) 4px,
+        rgba(0, 200, 255, 0.1) 4px,
+        rgba(0, 200, 255, 0.1) 8px,
+        rgba(60, 120, 255, 0.15) 8px,
+        rgba(60, 120, 255, 0.15) 14px,
         transparent 14px,
-        transparent 16px,
-        rgba(0, 200, 255, 0.5) 16px,
-        rgba(0, 200, 255, 0.5) 18px,
-        rgba(60, 120, 255, 0.25) 18px,
-        rgba(60, 120, 255, 0.25) 24px
+        transparent 18px,
+        rgba(245, 255, 26, 0.08) 18px,
+        rgba(245, 255, 26, 0.08) 24px,
+        rgba(255, 30, 60, 0.06) 24px,
+        rgba(255, 30, 60, 0.06) 30px,
+        transparent 30px,
+        transparent 36px,
+        rgba(0, 200, 255, 0.12) 36px,
+        rgba(0, 200, 255, 0.12) 42px,
+        rgba(60, 120, 255, 0.06) 42px,
+        rgba(60, 120, 255, 0.06) 50px
     );
     animation: glitch-band-1 7s step-end infinite;
 }
 
 /* Wide washed-out block — like a smeared frame */
 .hero-glitch__band--2 {
-    height: 40px;
+    height: 80px;
     background: repeating-linear-gradient(180deg,
-        rgba(60, 120, 255, 0.12) 0px,
-        rgba(60, 120, 255, 0.12) 6px,
-        rgba(0, 220, 255, 0.08) 6px,
-        rgba(0, 220, 255, 0.08) 10px,
-        transparent 10px,
-        transparent 12px,
-        rgba(245, 255, 26, 0.1) 12px,
-        rgba(245, 255, 26, 0.1) 20px,
-        rgba(255, 30, 60, 0.06) 20px,
-        rgba(255, 30, 60, 0.06) 28px,
-        transparent 28px,
-        transparent 32px,
-        rgba(60, 120, 255, 0.15) 32px,
-        rgba(60, 120, 255, 0.15) 40px
+        rgba(60, 120, 255, 0.06) 0px,
+        rgba(60, 120, 255, 0.06) 10px,
+        rgba(0, 220, 255, 0.04) 10px,
+        rgba(0, 220, 255, 0.04) 18px,
+        transparent 18px,
+        transparent 24px,
+        rgba(245, 255, 26, 0.05) 24px,
+        rgba(245, 255, 26, 0.05) 38px,
+        rgba(255, 30, 60, 0.03) 38px,
+        rgba(255, 30, 60, 0.03) 52px,
+        transparent 52px,
+        transparent 60px,
+        rgba(60, 120, 255, 0.07) 60px,
+        rgba(60, 120, 255, 0.07) 80px
     );
     animation: glitch-band-2 5s step-end infinite;
     animation-delay: -2s;
 }
 
-/* Tight pixel rows — sharp RGB split */
+/* Mid-weight pixel rows — RGB split */
 .hero-glitch__band--3 {
-    height: 14px;
+    height: 36px;
     background: repeating-linear-gradient(180deg,
-        rgba(255, 30, 60, 0.7) 0px,
-        rgba(255, 30, 60, 0.7) 2px,
-        rgba(0, 255, 100, 0.5) 2px,
-        rgba(0, 255, 100, 0.5) 4px,
-        rgba(60, 120, 255, 0.7) 4px,
-        rgba(60, 120, 255, 0.7) 6px,
-        transparent 6px,
-        transparent 8px,
-        rgba(0, 220, 255, 0.6) 8px,
-        rgba(0, 220, 255, 0.6) 10px,
-        rgba(245, 255, 26, 0.4) 10px,
-        rgba(245, 255, 26, 0.4) 12px,
-        rgba(255, 30, 60, 0.5) 12px,
-        rgba(255, 30, 60, 0.5) 14px
+        rgba(255, 30, 60, 0.15) 0px,
+        rgba(255, 30, 60, 0.15) 4px,
+        rgba(0, 255, 100, 0.1) 4px,
+        rgba(0, 255, 100, 0.1) 8px,
+        rgba(60, 120, 255, 0.15) 8px,
+        rgba(60, 120, 255, 0.15) 12px,
+        transparent 12px,
+        transparent 16px,
+        rgba(0, 220, 255, 0.12) 16px,
+        rgba(0, 220, 255, 0.12) 22px,
+        rgba(245, 255, 26, 0.08) 22px,
+        rgba(245, 255, 26, 0.08) 28px,
+        rgba(255, 30, 60, 0.1) 28px,
+        rgba(255, 30, 60, 0.1) 36px
     );
     animation: glitch-band-3 9s step-end infinite;
     animation-delay: -4s;
@@ -333,39 +333,39 @@ h3 {
 
 /* Fat corrupt block — like a stuck macroblock region */
 .hero-glitch__band--4 {
-    height: 32px;
+    height: 64px;
     background: repeating-linear-gradient(180deg,
-        rgba(0, 200, 255, 0.3) 0px,
-        rgba(0, 200, 255, 0.3) 4px,
-        rgba(60, 120, 255, 0.2) 4px,
-        rgba(60, 120, 255, 0.2) 10px,
-        transparent 10px,
-        transparent 14px,
-        rgba(255, 30, 60, 0.15) 14px,
-        rgba(255, 30, 60, 0.15) 18px,
-        rgba(245, 255, 26, 0.2) 18px,
-        rgba(245, 255, 26, 0.2) 22px,
-        transparent 22px,
+        rgba(0, 200, 255, 0.07) 0px,
+        rgba(0, 200, 255, 0.07) 8px,
+        rgba(60, 120, 255, 0.05) 8px,
+        rgba(60, 120, 255, 0.05) 18px,
+        transparent 18px,
         transparent 26px,
-        rgba(0, 220, 255, 0.25) 26px,
-        rgba(0, 220, 255, 0.25) 32px
+        rgba(255, 30, 60, 0.04) 26px,
+        rgba(255, 30, 60, 0.04) 34px,
+        rgba(245, 255, 26, 0.05) 34px,
+        rgba(245, 255, 26, 0.05) 44px,
+        transparent 44px,
+        transparent 52px,
+        rgba(0, 220, 255, 0.06) 52px,
+        rgba(0, 220, 255, 0.06) 64px
     );
     animation: glitch-band-4 6s step-end infinite;
     animation-delay: -1s;
 }
 
-/* Thin hot line — quick bright flash */
+/* Medium band — quick flash */
 .hero-glitch__band--5 {
-    height: 8px;
+    height: 28px;
     background: repeating-linear-gradient(180deg,
-        rgba(245, 255, 26, 0.6) 0px,
-        rgba(245, 255, 26, 0.6) 2px,
-        rgba(255, 30, 60, 0.5) 2px,
-        rgba(255, 30, 60, 0.5) 4px,
-        rgba(60, 120, 255, 0.7) 4px,
-        rgba(60, 120, 255, 0.7) 6px,
-        rgba(0, 220, 255, 0.5) 6px,
-        rgba(0, 220, 255, 0.5) 8px
+        rgba(245, 255, 26, 0.1) 0px,
+        rgba(245, 255, 26, 0.1) 6px,
+        rgba(255, 30, 60, 0.08) 6px,
+        rgba(255, 30, 60, 0.08) 12px,
+        rgba(60, 120, 255, 0.12) 12px,
+        rgba(60, 120, 255, 0.12) 18px,
+        rgba(0, 220, 255, 0.08) 18px,
+        rgba(0, 220, 255, 0.08) 28px
     );
     animation: glitch-band-5 11s step-end infinite;
     animation-delay: -6s;
