@@ -243,158 +243,147 @@ h3 {
     100% { opacity: 0.8; }
 }
 
-/* Drifting artifact bands — smooth movement, scaling height, fading */
+/* Drifting artifact bands — smooth movement, growing/shrinking, fading */
 .hero-glitch__band--1 {
-    height: 4px;
     background: repeating-linear-gradient(180deg,
-        rgba(255, 30, 60, 0.12) 0px,
-        rgba(255, 30, 60, 0.12) 4px,
-        rgba(0, 200, 255, 0.1) 4px,
-        rgba(0, 200, 255, 0.1) 8px,
-        rgba(60, 120, 255, 0.15) 8px,
-        rgba(60, 120, 255, 0.15) 14px,
-        transparent 14px,
-        transparent 18px,
-        rgba(245, 255, 26, 0.08) 18px,
-        rgba(245, 255, 26, 0.08) 24px,
-        rgba(0, 200, 255, 0.12) 24px,
-        rgba(0, 200, 255, 0.12) 30px,
-        rgba(60, 120, 255, 0.06) 30px,
-        rgba(60, 120, 255, 0.06) 40px
+        rgba(255, 30, 60, 0.2) 0px,
+        rgba(255, 30, 60, 0.2) 3px,
+        rgba(0, 200, 255, 0.18) 3px,
+        rgba(0, 200, 255, 0.18) 6px,
+        rgba(60, 120, 255, 0.25) 6px,
+        rgba(60, 120, 255, 0.25) 10px,
+        transparent 10px,
+        transparent 13px,
+        rgba(245, 255, 26, 0.15) 13px,
+        rgba(245, 255, 26, 0.15) 16px,
+        rgba(0, 200, 255, 0.2) 16px,
+        rgba(0, 200, 255, 0.2) 20px
     );
     animation: glitch-drift-1 12s ease-in-out infinite;
 }
 
 .hero-glitch__band--2 {
-    height: 4px;
     background: repeating-linear-gradient(180deg,
-        rgba(60, 120, 255, 0.06) 0px,
-        rgba(60, 120, 255, 0.06) 10px,
-        rgba(0, 220, 255, 0.04) 10px,
-        rgba(0, 220, 255, 0.04) 18px,
-        transparent 18px,
-        transparent 24px,
-        rgba(245, 255, 26, 0.05) 24px,
-        rgba(245, 255, 26, 0.05) 38px,
-        rgba(255, 30, 60, 0.03) 38px,
-        rgba(255, 30, 60, 0.03) 52px,
-        rgba(60, 120, 255, 0.07) 52px,
-        rgba(60, 120, 255, 0.07) 60px
+        rgba(60, 120, 255, 0.15) 0px,
+        rgba(60, 120, 255, 0.15) 5px,
+        rgba(0, 220, 255, 0.1) 5px,
+        rgba(0, 220, 255, 0.1) 9px,
+        transparent 9px,
+        transparent 12px,
+        rgba(245, 255, 26, 0.12) 12px,
+        rgba(245, 255, 26, 0.12) 18px,
+        rgba(255, 30, 60, 0.08) 18px,
+        rgba(255, 30, 60, 0.08) 24px
     );
     animation: glitch-drift-2 16s ease-in-out infinite;
     animation-delay: -5s;
 }
 
 .hero-glitch__band--3 {
-    height: 4px;
     background: repeating-linear-gradient(180deg,
-        rgba(255, 30, 60, 0.15) 0px,
-        rgba(255, 30, 60, 0.15) 4px,
-        rgba(0, 255, 100, 0.1) 4px,
-        rgba(0, 255, 100, 0.1) 8px,
-        rgba(60, 120, 255, 0.15) 8px,
-        rgba(60, 120, 255, 0.15) 12px,
+        rgba(255, 30, 60, 0.22) 0px,
+        rgba(255, 30, 60, 0.22) 3px,
+        rgba(0, 255, 100, 0.15) 3px,
+        rgba(0, 255, 100, 0.15) 6px,
+        rgba(60, 120, 255, 0.22) 6px,
+        rgba(60, 120, 255, 0.22) 9px,
+        transparent 9px,
         transparent 12px,
-        transparent 16px,
-        rgba(0, 220, 255, 0.12) 16px,
-        rgba(0, 220, 255, 0.12) 22px,
-        rgba(245, 255, 26, 0.08) 22px,
-        rgba(245, 255, 26, 0.08) 30px
+        rgba(0, 220, 255, 0.18) 12px,
+        rgba(0, 220, 255, 0.18) 16px
     );
     animation: glitch-drift-3 10s ease-in-out infinite;
     animation-delay: -3s;
 }
 
 .hero-glitch__band--4 {
-    height: 4px;
     background: repeating-linear-gradient(180deg,
-        rgba(0, 200, 255, 0.07) 0px,
-        rgba(0, 200, 255, 0.07) 8px,
-        rgba(60, 120, 255, 0.05) 8px,
-        rgba(60, 120, 255, 0.05) 18px,
-        transparent 18px,
-        transparent 26px,
-        rgba(245, 255, 26, 0.05) 26px,
-        rgba(245, 255, 26, 0.05) 36px,
-        rgba(0, 220, 255, 0.06) 36px,
-        rgba(0, 220, 255, 0.06) 48px
+        rgba(0, 200, 255, 0.14) 0px,
+        rgba(0, 200, 255, 0.14) 4px,
+        rgba(60, 120, 255, 0.1) 4px,
+        rgba(60, 120, 255, 0.1) 10px,
+        transparent 10px,
+        transparent 14px,
+        rgba(245, 255, 26, 0.1) 14px,
+        rgba(245, 255, 26, 0.1) 20px,
+        rgba(0, 220, 255, 0.12) 20px,
+        rgba(0, 220, 255, 0.12) 26px
     );
     animation: glitch-drift-4 14s ease-in-out infinite;
     animation-delay: -8s;
 }
 
 .hero-glitch__band--5 {
-    height: 4px;
     background: repeating-linear-gradient(180deg,
-        rgba(245, 255, 26, 0.1) 0px,
-        rgba(245, 255, 26, 0.1) 6px,
-        rgba(255, 30, 60, 0.08) 6px,
-        rgba(255, 30, 60, 0.08) 12px,
-        rgba(60, 120, 255, 0.12) 12px,
-        rgba(60, 120, 255, 0.12) 20px,
-        rgba(0, 220, 255, 0.08) 20px,
-        rgba(0, 220, 255, 0.08) 28px
+        rgba(245, 255, 26, 0.18) 0px,
+        rgba(245, 255, 26, 0.18) 3px,
+        rgba(255, 30, 60, 0.14) 3px,
+        rgba(255, 30, 60, 0.14) 6px,
+        rgba(60, 120, 255, 0.2) 6px,
+        rgba(60, 120, 255, 0.2) 10px,
+        rgba(0, 220, 255, 0.14) 10px,
+        rgba(0, 220, 255, 0.14) 14px
     );
     animation: glitch-drift-5 18s ease-in-out infinite;
     animation-delay: -11s;
 }
 
-/* Each band drifts up/down, scales taller/shorter, fades in/out */
+/* Each band drifts vertically, grows/shrinks in height, fades in/out */
 @keyframes glitch-drift-1 {
-    0%   { top: 15%; opacity: 0;   scaleY: 1; }
-    8%   { opacity: 0.7; transform: scaleY(12); }
-    20%  { top: 35%; opacity: 0.4; transform: scaleY(25); }
-    35%  { opacity: 0.8; transform: scaleY(6); }
-    50%  { top: 55%; opacity: 0;   transform: scaleY(1); }
-    65%  { opacity: 0.5; transform: scaleY(18); }
-    80%  { top: 75%; opacity: 0.3; transform: scaleY(10); }
-    92%  { opacity: 0.6; transform: scaleY(3); }
-    100% { top: 85%; opacity: 0;   transform: scaleY(1); }
+    0%   { top: 15%; height: 2px;   opacity: 0; }
+    8%   { height: 50px;  opacity: 0.7; }
+    20%  { top: 35%; height: 100px; opacity: 0.4; }
+    35%  { height: 24px;  opacity: 0.8; }
+    50%  { top: 55%; height: 2px;   opacity: 0; }
+    65%  { height: 70px;  opacity: 0.5; }
+    80%  { top: 75%; height: 40px;  opacity: 0.3; }
+    92%  { height: 12px;  opacity: 0.6; }
+    100% { top: 85%; height: 2px;   opacity: 0; }
 }
 
 @keyframes glitch-drift-2 {
-    0%   { top: 80%; opacity: 0;   transform: scaleY(1); }
-    10%  { opacity: 0.4; transform: scaleY(20); }
-    25%  { top: 60%; opacity: 0.6; transform: scaleY(8); }
-    40%  { opacity: 0;   transform: scaleY(1); }
-    55%  { top: 40%; opacity: 0.5; transform: scaleY(15); }
-    70%  { opacity: 0.3; transform: scaleY(30); }
-    85%  { top: 20%; opacity: 0.6; transform: scaleY(5); }
-    100% { top: 10%; opacity: 0;   transform: scaleY(1); }
+    0%   { top: 80%; height: 2px;   opacity: 0; }
+    10%  { height: 80px;  opacity: 0.4; }
+    25%  { top: 60%; height: 30px;  opacity: 0.6; }
+    40%  { height: 2px;   opacity: 0; }
+    55%  { top: 40%; height: 60px;  opacity: 0.5; }
+    70%  { height: 120px; opacity: 0.3; }
+    85%  { top: 20%; height: 20px;  opacity: 0.6; }
+    100% { top: 10%; height: 2px;   opacity: 0; }
 }
 
 @keyframes glitch-drift-3 {
-    0%   { top: 45%; opacity: 0;   transform: scaleY(1); }
-    12%  { opacity: 0.6; transform: scaleY(8); }
-    25%  { top: 25%; opacity: 0.9; transform: scaleY(18); }
-    40%  { opacity: 0.3; transform: scaleY(4); }
-    55%  { top: 50%; opacity: 0;   transform: scaleY(1); }
-    70%  { opacity: 0.7; transform: scaleY(14); }
-    85%  { top: 70%; opacity: 0.4; transform: scaleY(22); }
-    100% { top: 80%; opacity: 0;   transform: scaleY(1); }
+    0%   { top: 45%; height: 2px;   opacity: 0; }
+    12%  { height: 35px;  opacity: 0.6; }
+    25%  { top: 25%; height: 70px;  opacity: 0.9; }
+    40%  { height: 16px;  opacity: 0.3; }
+    55%  { top: 50%; height: 2px;   opacity: 0; }
+    70%  { height: 55px;  opacity: 0.7; }
+    85%  { top: 70%; height: 90px;  opacity: 0.4; }
+    100% { top: 80%; height: 2px;   opacity: 0; }
 }
 
 @keyframes glitch-drift-4 {
-    0%   { top: 70%; opacity: 0;   transform: scaleY(1); }
-    15%  { opacity: 0.3; transform: scaleY(16); }
-    30%  { top: 50%; opacity: 0.5; transform: scaleY(28); }
-    45%  { opacity: 0;   transform: scaleY(1); }
-    60%  { top: 30%; opacity: 0.4; transform: scaleY(10); }
-    75%  { opacity: 0.6; transform: scaleY(20); }
-    90%  { top: 15%; opacity: 0.2; transform: scaleY(6); }
-    100% { top: 10%; opacity: 0;   transform: scaleY(1); }
+    0%   { top: 70%; height: 2px;   opacity: 0; }
+    15%  { height: 65px;  opacity: 0.3; }
+    30%  { top: 50%; height: 110px; opacity: 0.5; }
+    45%  { height: 2px;   opacity: 0; }
+    60%  { top: 30%; height: 40px;  opacity: 0.4; }
+    75%  { height: 80px;  opacity: 0.6; }
+    90%  { top: 15%; height: 24px;  opacity: 0.2; }
+    100% { top: 10%; height: 2px;   opacity: 0; }
 }
 
 @keyframes glitch-drift-5 {
-    0%   { top: 20%; opacity: 0;   transform: scaleY(1); }
-    8%   { opacity: 0.5; transform: scaleY(10); }
-    20%  { top: 35%; opacity: 0.3; transform: scaleY(22); }
-    35%  { opacity: 0.7; transform: scaleY(5); }
-    50%  { top: 55%; opacity: 0;   transform: scaleY(1); }
-    60%  { opacity: 0.4; transform: scaleY(16); }
-    75%  { top: 70%; opacity: 0.6; transform: scaleY(8); }
-    88%  { opacity: 0.2; transform: scaleY(25); }
-    100% { top: 85%; opacity: 0;   transform: scaleY(1); }
+    0%   { top: 20%; height: 2px;   opacity: 0; }
+    8%   { height: 40px;  opacity: 0.5; }
+    20%  { top: 35%; height: 85px;  opacity: 0.3; }
+    35%  { height: 20px;  opacity: 0.7; }
+    50%  { top: 55%; height: 2px;   opacity: 0; }
+    60%  { height: 60px;  opacity: 0.4; }
+    75%  { top: 70%; height: 30px;  opacity: 0.6; }
+    88%  { height: 100px; opacity: 0.2; }
+    100% { top: 85%; height: 2px;   opacity: 0; }
 }
 
 /* Bottom gradient fade to black */
