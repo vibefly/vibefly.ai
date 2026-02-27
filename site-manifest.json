@@ -1,0 +1,19 @@
+{
+  "site": "vibefly.ai",
+  "framework": "static-html",
+  "description": "AI-powered website design tool by MotiveFx",
+  "root": "htdocs",
+  "editable_files": {
+    "htdocs/index.html": "Single-page landing with hero, how it works, and CTA",
+    "htdocs/styles.css": "All styles with CSS custom properties for theming",
+    "htdocs/js/main.js": "Smooth scroll and minimal interactivity"
+  },
+  "protected_files": [".gitignore"],
+  "assets_dir": "htdocs/images/",
+  "hosting": {
+    "provider": "cloudflare-workers",
+    "repo": "emcweeney/vibefly.ai-site",
+    "main_branch": "main",
+    "dev_branch": "dev"
+  }
+}
