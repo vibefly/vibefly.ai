@@ -1,0 +1,461 @@
+/* ==========================================================================
+   vibefly.ai — Styles
+   Matches motivefx.com design system: dark bg, neon yellow accent, blue accents
+   ========================================================================== */
+
+/* ---------- Custom Properties ---------- */
+:root {
+    --color-dark-bg: #000000;
+    --color-light-bg: rgba(2, 3, 10, 0.62);
+    --color-accent-neon: #f5ff1a;
+    --color-accent-blue: #3c78ff;
+    --color-border-card: rgba(100, 180, 255, 0.6);
+    --color-border-card-hover: rgba(0, 220, 255, 0.9);
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #AAAAAA;
+    --font-primary: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --transition-speed: 0.3s ease-in-out;
+    --border-radius: 12px;
+    --section-padding: 8rem 5%;
+    --max-width: 1200px;
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-dark-bg);
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* ---------- Typography ---------- */
+h1 {
+    font-size: 4.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+    line-height: 1.05;
+}
+
+h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-accent-neon);
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-accent-neon);
+}
+
+/* ---------- Header ---------- */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 1.2rem 5%;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    transition: color var(--transition-speed), text-shadow var(--transition-speed);
+}
+
+.logo:hover {
+    color: var(--color-accent-neon);
+    text-shadow: 0 0 8px rgba(245, 255, 26, 0.7);
+}
+
+.logo-dot {
+    color: var(--color-accent-neon);
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+.nav-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color var(--transition-speed);
+}
+
+.nav-link:hover {
+    color: var(--color-accent-neon);
+}
+
+/* Nav toggle (mobile) */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.nav-toggle__bar {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-text-primary);
+    border-radius: 2px;
+    transition: transform var(--transition-speed), opacity var(--transition-speed);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5%;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(60, 120, 255, 0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 20% 80%, rgba(245, 255, 26, 0.03) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 80% 20%, rgba(60, 120, 255, 0.05) 0%, transparent 60%);
+    background-color: var(--color-dark-bg);
+}
+
+/* Subtle dot grid pattern */
+.hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(100, 180, 255, 0.12) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 70%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    text-align: center;
+}
+
+.hero-tagline {
+    font-size: 1.1rem;
+    color: var(--color-accent-neon);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.hero-title {
+    margin-bottom: 1.5rem;
+}
+
+.hero-subtext {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+}
+
+/* ---------- Buttons ---------- */
+.primary-shiny-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-accent-neon);
+    color: #000000;
+    border: 2px solid var(--color-accent-neon);
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    box-shadow:
+        0 0 30px rgba(245, 255, 26, 0.25),
+        0 0 18px rgba(245, 255, 26, 0.35);
+}
+
+.primary-shiny-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+        0 0 34px rgba(245, 255, 26, 0.35),
+        0 0 28px rgba(245, 255, 26, 0.45);
+}
+
+.cta-button--wide {
+    padding: 1.2rem 3.5rem;
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+}
+
+/* ---------- Sections ---------- */
+.section {
+    padding: var(--section-padding);
+}
+
+.section-heading {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-accent-neon);
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+/* ---------- Steps Grid ---------- */
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.step-card {
+    position: relative;
+    background: var(--color-light-bg);
+    border: 1px solid var(--color-border-card);
+    border-radius: var(--border-radius);
+    padding: 3rem 2.5rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    transition: transform var(--transition-speed), border-color var(--transition-speed), box-shadow var(--transition-speed);
+    overflow: hidden;
+}
+
+/* Shine sweep effect */
+.step-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(60, 120, 255, 0.01),
+        rgba(60, 120, 255, 0.08),
+        rgba(60, 120, 255, 0.01)
+    );
+    transform: skewX(-25deg);
+    transition: left 0.6s ease;
+    pointer-events: none;
+}
+
+.step-card:hover::before {
+    left: 125%;
+}
+
+.step-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-border-card-hover);
+    box-shadow: 0 8px 22px rgba(60, 120, 255, 0.16);
+}
+
+.step-card__icon {
+    color: var(--color-accent-blue);
+    margin-bottom: 1.5rem;
+}
+
+.step-card__number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: rgba(245, 255, 26, 0.08);
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.step-card__title {
+    margin-bottom: 1rem;
+}
+
+.step-card__text {
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* ---------- CTA Section ---------- */
+.section--cta {
+    text-align: center;
+    padding: 10rem 5%;
+}
+
+.cta-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-text {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+    text-align: center;
+    padding: 2rem 5%;
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.site-footer a {
+    text-decoration: underline;
+    transition: color var(--transition-speed);
+}
+
+.site-footer a:hover {
+    color: var(--color-accent-neon);
+}
+
+/* ---------- Section Reveal Animation ---------- */
+.section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.section.section-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------- Responsive: 1024px ---------- */
+@media (max-width: 1024px) {
+    h1 { font-size: 3.5rem; }
+    .section-heading { font-size: 2.4rem; }
+    .section { padding: 6rem 6%; }
+    .section--cta { padding: 8rem 6%; }
+}
+
+/* ---------- Responsive: 768px ---------- */
+@media (max-width: 768px) {
+    h1 { font-size: 2.8rem; }
+    .section-heading { font-size: 2rem; }
+    .section { padding: 5rem 7%; }
+    .section--cta { padding: 6rem 7%; }
+
+    /* Disable section animations on mobile */
+    .section {
+        opacity: 1;
+        transform: none;
+    }
+
+    /* Mobile nav */
+    .nav-toggle {
+        display: flex;
+    }
+
+    .main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .main-nav.is-open {
+        display: block;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        padding: 1.5rem 7%;
+        gap: 0;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .header-inner {
+        padding: 1rem 6%;
+    }
+
+    /* Steps stack */
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .cta-button--wide {
+        width: 100%;
+    }
+}
+
+/* ---------- Responsive: 480px ---------- */
+@media (max-width: 480px) {
+    h1 { font-size: 2.6rem; }
+    .section-heading { font-size: 2rem; }
+    .section { padding: 4rem 7%; }
+    .section--cta { padding: 5rem 7%; }
+
+    .hero-subtext { font-size: 1.05rem; }
+
+    .cta-button--wide {
+        font-size: 1rem;
+        letter-spacing: 0.05em;
+        padding: 1.1rem 2rem;
+    }
+}
