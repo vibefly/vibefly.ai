@@ -256,130 +256,188 @@ h3 {
     left: 0;
     width: 100%;
     opacity: 0;
+    image-rendering: pixelated;
 }
 
+/* Thick chunky band — stacked color rows like corrupted macroblocks */
 .hero-glitch__band--1 {
-    height: 2px;
-    background: linear-gradient(90deg,
-        transparent 5%,
-        rgba(60, 120, 255, 0.4) 15%,
-        rgba(255, 40, 80, 0.2) 18%,
-        transparent 25%,
-        rgba(0, 220, 255, 0.35) 55%,
-        transparent 70%,
-        rgba(245, 255, 26, 0.25) 85%,
-        transparent 95%);
-    animation: glitch-band-1 7s ease-in-out infinite;
+    height: 24px;
+    background: repeating-linear-gradient(180deg,
+        rgba(255, 30, 60, 0.5) 0px,
+        rgba(255, 30, 60, 0.5) 3px,
+        rgba(0, 200, 255, 0.4) 3px,
+        rgba(0, 200, 255, 0.4) 5px,
+        rgba(60, 120, 255, 0.6) 5px,
+        rgba(60, 120, 255, 0.6) 8px,
+        transparent 8px,
+        transparent 10px,
+        rgba(245, 255, 26, 0.35) 10px,
+        rgba(245, 255, 26, 0.35) 12px,
+        rgba(255, 30, 60, 0.3) 12px,
+        rgba(255, 30, 60, 0.3) 14px,
+        transparent 14px,
+        transparent 16px,
+        rgba(0, 200, 255, 0.5) 16px,
+        rgba(0, 200, 255, 0.5) 18px,
+        rgba(60, 120, 255, 0.25) 18px,
+        rgba(60, 120, 255, 0.25) 24px
+    );
+    animation: glitch-band-1 7s step-end infinite;
 }
 
+/* Wide washed-out block — like a smeared frame */
 .hero-glitch__band--2 {
-    height: 4px;
-    background: linear-gradient(90deg,
-        transparent 10%,
-        rgba(245, 255, 26, 0.15) 30%,
-        rgba(60, 120, 255, 0.25) 50%,
-        transparent 60%);
-    animation: glitch-band-2 5s ease-in-out infinite;
+    height: 40px;
+    background: repeating-linear-gradient(180deg,
+        rgba(60, 120, 255, 0.12) 0px,
+        rgba(60, 120, 255, 0.12) 6px,
+        rgba(0, 220, 255, 0.08) 6px,
+        rgba(0, 220, 255, 0.08) 10px,
+        transparent 10px,
+        transparent 12px,
+        rgba(245, 255, 26, 0.1) 12px,
+        rgba(245, 255, 26, 0.1) 20px,
+        rgba(255, 30, 60, 0.06) 20px,
+        rgba(255, 30, 60, 0.06) 28px,
+        transparent 28px,
+        transparent 32px,
+        rgba(60, 120, 255, 0.15) 32px,
+        rgba(60, 120, 255, 0.15) 40px
+    );
+    animation: glitch-band-2 5s step-end infinite;
     animation-delay: -2s;
 }
 
+/* Tight pixel rows — sharp RGB split */
 .hero-glitch__band--3 {
-    height: 1px;
-    background: linear-gradient(90deg,
-        transparent 20%,
-        rgba(0, 220, 255, 0.5) 40%,
-        rgba(255, 40, 80, 0.15) 45%,
-        transparent 55%);
-    animation: glitch-band-3 9s ease-in-out infinite;
+    height: 14px;
+    background: repeating-linear-gradient(180deg,
+        rgba(255, 30, 60, 0.7) 0px,
+        rgba(255, 30, 60, 0.7) 2px,
+        rgba(0, 255, 100, 0.5) 2px,
+        rgba(0, 255, 100, 0.5) 4px,
+        rgba(60, 120, 255, 0.7) 4px,
+        rgba(60, 120, 255, 0.7) 6px,
+        transparent 6px,
+        transparent 8px,
+        rgba(0, 220, 255, 0.6) 8px,
+        rgba(0, 220, 255, 0.6) 10px,
+        rgba(245, 255, 26, 0.4) 10px,
+        rgba(245, 255, 26, 0.4) 12px,
+        rgba(255, 30, 60, 0.5) 12px,
+        rgba(255, 30, 60, 0.5) 14px
+    );
+    animation: glitch-band-3 9s step-end infinite;
     animation-delay: -4s;
 }
 
+/* Fat corrupt block — like a stuck macroblock region */
 .hero-glitch__band--4 {
-    height: 6px;
-    background: linear-gradient(90deg,
-        transparent 0%,
-        rgba(60, 120, 255, 0.08) 25%,
-        rgba(0, 220, 255, 0.12) 50%,
-        transparent 65%);
-    filter: blur(1px);
-    animation: glitch-band-4 6s ease-in-out infinite;
+    height: 32px;
+    background: repeating-linear-gradient(180deg,
+        rgba(0, 200, 255, 0.3) 0px,
+        rgba(0, 200, 255, 0.3) 4px,
+        rgba(60, 120, 255, 0.2) 4px,
+        rgba(60, 120, 255, 0.2) 10px,
+        transparent 10px,
+        transparent 14px,
+        rgba(255, 30, 60, 0.15) 14px,
+        rgba(255, 30, 60, 0.15) 18px,
+        rgba(245, 255, 26, 0.2) 18px,
+        rgba(245, 255, 26, 0.2) 22px,
+        transparent 22px,
+        transparent 26px,
+        rgba(0, 220, 255, 0.25) 26px,
+        rgba(0, 220, 255, 0.25) 32px
+    );
+    animation: glitch-band-4 6s step-end infinite;
     animation-delay: -1s;
 }
 
+/* Thin hot line — quick bright flash */
 .hero-glitch__band--5 {
-    height: 1px;
-    background: linear-gradient(90deg,
-        transparent 40%,
-        rgba(255, 40, 80, 0.3) 50%,
-        rgba(60, 120, 255, 0.4) 55%,
-        transparent 70%);
-    animation: glitch-band-5 11s ease-in-out infinite;
+    height: 8px;
+    background: repeating-linear-gradient(180deg,
+        rgba(245, 255, 26, 0.6) 0px,
+        rgba(245, 255, 26, 0.6) 2px,
+        rgba(255, 30, 60, 0.5) 2px,
+        rgba(255, 30, 60, 0.5) 4px,
+        rgba(60, 120, 255, 0.7) 4px,
+        rgba(60, 120, 255, 0.7) 6px,
+        rgba(0, 220, 255, 0.5) 6px,
+        rgba(0, 220, 255, 0.5) 8px
+    );
+    animation: glitch-band-5 11s step-end infinite;
     animation-delay: -6s;
 }
 
 @keyframes glitch-band-1 {
     0%, 100% { top: 12%; opacity: 0; }
-    3% { opacity: 0.9; }
-    5% { opacity: 0; }
-    5.5% { opacity: 0.7; top: 13%; }
-    8% { opacity: 0; }
+    3% { opacity: 0.9; top: 12%; }
+    4.5% { opacity: 0; }
+    5% { opacity: 0.7; top: 14%; }
+    6% { opacity: 0; }
     40% { top: 45%; opacity: 0; }
-    42% { opacity: 0.8; }
-    43% { opacity: 0; }
+    41% { opacity: 0.85; }
+    42.5% { opacity: 0; }
+    43% { opacity: 0.6; top: 47%; }
+    43.5% { opacity: 0; }
     70% { top: 72%; opacity: 0; }
-    72% { opacity: 0.6; }
-    73% { opacity: 0; }
+    71% { opacity: 0.7; }
+    72% { opacity: 0; }
 }
 
 @keyframes glitch-band-2 {
     0%, 100% { top: 65%; opacity: 0; }
     15% { top: 55%; opacity: 0; }
-    17% { opacity: 0.7; }
-    18.5% { opacity: 0; }
-    19% { opacity: 0.5; top: 56%; }
+    16% { opacity: 0.6; }
+    18% { opacity: 0; }
+    19% { opacity: 0.4; top: 57%; }
     20% { opacity: 0; }
     60% { top: 25%; opacity: 0; }
-    62% { opacity: 0.6; }
-    63.5% { opacity: 0; }
+    61% { opacity: 0.5; }
+    63% { opacity: 0; }
 }
 
 @keyframes glitch-band-3 {
     0%, 100% { top: 80%; opacity: 0; }
     25% { top: 60%; opacity: 0; }
-    26% { opacity: 0.8; }
-    26.5% { opacity: 0; }
+    26% { opacity: 0.9; }
+    26.8% { opacity: 0; }
+    27.2% { opacity: 0.7; top: 62%; }
+    27.8% { opacity: 0; }
     50% { top: 35%; opacity: 0; }
-    52% { opacity: 1; }
-    52.5% { opacity: 0; }
-    52.8% { opacity: 0.6; top: 36%; }
-    53.2% { opacity: 0; }
+    51% { opacity: 1; }
+    51.5% { opacity: 0; }
+    51.8% { opacity: 0.8; top: 37%; }
+    52.3% { opacity: 0; }
 }
 
 @keyframes glitch-band-4 {
     0%, 100% { top: 30%; opacity: 0; }
     10% { top: 38%; opacity: 0; }
-    12% { opacity: 0.5; }
-    14% { opacity: 0; }
+    11% { opacity: 0.5; }
+    13% { opacity: 0; }
     45% { top: 60%; opacity: 0; }
-    47% { opacity: 0.4; }
-    49% { opacity: 0; }
+    46% { opacity: 0.45; }
+    48% { opacity: 0; }
     80% { top: 18%; opacity: 0; }
-    82% { opacity: 0.6; }
-    83% { opacity: 0; }
+    81% { opacity: 0.55; }
+    82.5% { opacity: 0; }
 }
 
 @keyframes glitch-band-5 {
     0%, 100% { top: 50%; opacity: 0; }
     8% { top: 48%; opacity: 0; }
-    9% { opacity: 0.9; }
-    9.3% { opacity: 0; }
+    9% { opacity: 1; }
+    9.5% { opacity: 0; }
+    9.8% { opacity: 0.7; top: 49%; }
+    10.2% { opacity: 0; }
     35% { top: 70%; opacity: 0; }
-    36.5% { opacity: 0.7; }
-    37% { opacity: 0; }
-    37.3% { opacity: 0.5; top: 71%; }
-    37.8% { opacity: 0; }
+    36% { opacity: 0.9; }
+    36.5% { opacity: 0; }
     75% { top: 20%; opacity: 0; }
-    76% { opacity: 0.6; }
+    76% { opacity: 0.8; }
     76.5% { opacity: 0; }
 }
 
