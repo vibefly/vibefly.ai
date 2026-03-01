@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "title": "vibefly.ai — AI-Powered Websites by motiveFx",
+    "description": "AI-powered websites that accelerate business growth. Built and refined by intelligent agents. A motiveFx product."
+  },
+  "theme": {
+    "darkBg": "#000000",
+    "accentNeon": "#f5ff1a",
+    "accentBlue": "#3c78ff",
+    "borderCard": "rgba(100, 180, 255, 0.6)",
+    "borderCardHover": "rgba(0, 220, 255, 0.9)",
+    "textSecondary": "#AAAAAA"
+  },
+  "logo": {
+    "name": "vibefly",
+    "tld": ".ai"
+  },
+  "nav": [
+    { "label": "How It Works", "href": "#how-it-works" },
+    { "label": "Get Started", "href": "#contact" }
+  ],
+  "hero": {
+    "tagline": "AI-Powered Web Design",
+    "titleLine1": "Websites that",
+    "titleLine2": "accelerate growth",
+    "subtext": "Intelligent agents design, build, and refine your website — so you can focus on your business.",
+    "ctaText": "Get Started",
+    "ctaHref": "#contact"
+  },
+  "steps": {
+    "heading": "How It Works",
+    "items": [
+      {
+        "icon": "palette",
+        "number": "01",
+        "title": "Design Direction",
+        "text": "We establish your brand's visual identity — combining AI analysis with human creative direction to define the look and feel."
+      },
+      {
+        "icon": "code-2",
+        "number": "02",
+        "title": "Build & Deploy",
+        "text": "Your site is built and deployed automatically — fast, clean code pushed live to a global edge network."
+      },
+      {
+        "icon": "layers",
+        "number": "03",
+        "title": "Refine & Evolve",
+        "text": "Our AI agent continuously refines your site — updating content, optimizing performance, and adapting to your needs."
+      }
+    ]
+  },
+  "contact": {
+    "heading": "Get in Touch",
+    "subtext": "Tell us about your project. We'll respond within one business day.",
+    "formAction": "https://formspree.io/f/mldqvzwg",
+    "statusMessages": [
+      "Waking up the carrier pigeons\u2026",
+      "Teaching your message to fly\u2026",
+      "Bribing the mail server with cookies\u2026",
+      "Encrypting with good vibes\u2026",
+      "Folding your message into a paper airplane\u2026",
+      "Convincing the internet you\u2019re not a robot\u2026",
+      "Pouring coffee for the server\u2026",
+      "Negotiating with the WiFi gods\u2026",
+      "Almost there, pinky promise\u2026"
+    ],
+    "deliveredMessage": "Message delivered!",
+    "thankYouHeading": "Thank You",
+    "thankYouMessage": "We received your message and look forward to speaking with you.",
+    "thankYouSubtext": "We\u2019ll respond within one business day."
+  },
+  "footer": {
+    "creditText": "Built by",
+    "creditName": "motiveFx",
+    "creditUrl": "https://motivefx.com"
+  }
+}

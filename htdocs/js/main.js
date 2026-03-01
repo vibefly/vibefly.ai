@@ -1,6 +1,8 @@
 (function () {
     'use strict';
 
+    var formCfg = window.__FORM_CONFIG || {};
+
     /* ---------- Mobile Nav Toggle ---------- */
     var navToggle = document.getElementById('nav-toggle');
     var mainNav = document.getElementById('main-nav');
@@ -68,16 +70,9 @@
     var subtext = contactSection.querySelector('.contact-subtext');
     var formAction = form.action;
 
-    var statusMessages = [
-        'Waking up the carrier pigeons\u2026',
-        'Teaching your message to fly\u2026',
-        'Bribing the mail server with cookies\u2026',
-        'Encrypting with good vibes\u2026',
-        'Folding your message into a paper airplane\u2026',
-        'Convincing the internet you\u2019re not a robot\u2026',
-        'Pouring coffee for the server\u2026',
-        'Negotiating with the WiFi gods\u2026',
-        'Almost there, pinky promise\u2026'
+    var statusMessages = formCfg.statusMessages || [
+        'Sending your message\u2026',
+        'Almost there\u2026'
     ];
 
     function sleep(ms) {
@@ -160,7 +155,7 @@
                 barEl.classList.add('is-complete');
                 statusEl.style.opacity = '0';
                 setTimeout(function () {
-                    statusEl.textContent = 'Message delivered!';
+                    statusEl.textContent = formCfg.deliveredMessage || 'Message delivered!';
                     statusEl.style.opacity = '1';
                     statusEl.style.transform = 'translateY(0)';
                 }, 150);
@@ -193,7 +188,7 @@
     function showThankYou() {
         heading.style.opacity = '0';
         setTimeout(function () {
-            heading.textContent = 'Thank You';
+            heading.textContent = formCfg.thankYouHeading || 'Thank You';
             heading.style.opacity = '1';
         }, 300);
 
@@ -202,8 +197,8 @@
         var ty = document.createElement('div');
         ty.className = 'form-thank-you';
         ty.innerHTML =
-            '<p>We received your message and look forward to speaking with you.</p>' +
-            '<p class="thank-you-subtext">We\u2019ll respond within one business day.</p>';
+            '<p>' + (formCfg.thankYouMessage || 'We received your message.') + '</p>' +
+            '<p class="thank-you-subtext">' + (formCfg.thankYouSubtext || '') + '</p>';
         contactSection.insertBefore(ty, form);
         form.remove();
 

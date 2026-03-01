@@ -3,32 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vibefly.ai — AI-Powered Websites by motiveFx</title>
-    <meta name="description" content="AI-powered websites that accelerate business growth. Built and refined by intelligent agents. A motiveFx product.">
+    <title>vibefly.ai</title>
+    <meta name="description" content="">
     <link rel="stylesheet" href="styles.css">
+    <script>window.__CONTENT = fetch('content.json').then(function(r) { return r.ok ? r.json() : Promise.reject(); });</script>
+    <style>body{opacity:0}body.content-loaded{opacity:1;transition:opacity .15s}</style>
+    <noscript><style>body{opacity:1}</style></noscript>
 </head>
 <body>
 
     <!-- Header -->
     <header class="site-header" role="banner">
         <div class="header-inner">
-            <a href="#hero" class="logo">vibefly<span class="logo-dot">.ai</span></a>
+            <a href="#hero" class="logo">
+                <span data-content="logo.name">vibefly</span><span class="logo-dot" data-content="logo.tld">.ai</span>
+            </a>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
                 <span class="nav-toggle__bar"></span>
                 <span class="nav-toggle__bar"></span>
                 <span class="nav-toggle__bar"></span>
             </button>
             <nav class="main-nav" id="main-nav" role="navigation">
-                <ul class="nav-list">
-                    <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
-                    <li><a href="#contact" class="nav-link">Get Started</a></li>
-                </ul>
+                <ul class="nav-list" data-content-nav></ul>
             </nav>
         </div>
     </header>
 
     <!-- Hero -->
-    <section id="hero" class="hero">
+    <section id="hero" class="hero" data-section="hero">
         <div class="hero-bg">
             <div class="hero-orb hero-orb--1"></div>
             <div class="hero-orb hero-orb--2"></div>
@@ -36,72 +38,27 @@
             <div class="hero-grid"></div>
         </div>
         <div class="hero-content">
-            <p class="hero-tagline">AI-Powered Web Design</p>
-            <h1 class="hero-title">Websites that<br>accelerate growth</h1>
-            <p class="hero-subtext">Intelligent agents design, build, and refine your website — so you can focus on your business.</p>
-            <a href="#contact" class="primary-shiny-btn cta-button--wide">Get Started</a>
+            <p class="hero-tagline" data-content="hero.tagline">AI-Powered Web Design</p>
+            <h1 class="hero-title">
+                <span data-content="hero.titleLine1">Websites that</span><br>
+                <span data-content="hero.titleLine2">accelerate growth</span>
+            </h1>
+            <p class="hero-subtext" data-content="hero.subtext">Intelligent agents design, build, and refine your website.</p>
+            <a href="#contact" class="primary-shiny-btn cta-button--wide" data-content="hero.ctaText" data-content-attr-href="hero.ctaHref">Get Started</a>
         </div>
     </section>
 
     <!-- How It Works -->
-    <section id="how-it-works" class="section">
-        <h2 class="section-heading">How It Works</h2>
-        <div class="steps-grid">
-
-            <div class="step-card">
-                <div class="step-card__icon">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 16v-4"/>
-                        <path d="M12 8h.01"/>
-                        <path d="M8 12h8"/>
-                        <path d="M2 12h2"/>
-                        <path d="M20 12h2"/>
-                        <path d="M12 2v2"/>
-                        <path d="M12 20v2"/>
-                    </svg>
-                </div>
-                <div class="step-card__number">01</div>
-                <h3 class="step-card__title">Design Direction</h3>
-                <p class="step-card__text">We establish your brand's visual identity — combining AI analysis with human creative direction to define the look and feel.</p>
-            </div>
-
-            <div class="step-card">
-                <div class="step-card__icon">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="16 18 22 12 16 6"/>
-                        <polyline points="8 6 2 12 8 18"/>
-                        <line x1="14" y1="4" x2="10" y2="20"/>
-                    </svg>
-                </div>
-                <div class="step-card__number">02</div>
-                <h3 class="step-card__title">Build & Deploy</h3>
-                <p class="step-card__text">Your site is built and deployed automatically — fast, clean code pushed live to a global edge network.</p>
-            </div>
-
-            <div class="step-card">
-                <div class="step-card__icon">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                        <path d="M2 17l10 5 10-5"/>
-                        <path d="M2 12l10 5 10-5"/>
-                    </svg>
-                </div>
-                <div class="step-card__number">03</div>
-                <h3 class="step-card__title">Refine & Evolve</h3>
-                <p class="step-card__text">Our AI agent continuously refines your site — updating content, optimizing performance, and adapting to your needs.</p>
-            </div>
-
-        </div>
+    <section id="how-it-works" class="section" data-section="steps">
+        <h2 class="section-heading" data-content="steps.heading">How It Works</h2>
+        <div class="steps-grid" data-steps-grid></div>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="section section--contact">
-        <h2 class="section-heading">Get in Touch</h2>
-        <p class="contact-subtext">Tell us about your project. We'll respond within one business day.</p>
-        <form id="contact-form" class="contact-form"
-            action="https://formspree.io/f/mldqvzwg"
-            method="POST">
+    <section id="contact" class="section section--contact" data-section="contact">
+        <h2 class="section-heading" data-content="contact.heading">Get in Touch</h2>
+        <p class="contact-subtext" data-content="contact.subtext">Tell us about your project.</p>
+        <form id="contact-form" class="contact-form" method="POST">
             <div class="form-row">
                 <label for="contact-first-name">First Name</label>
                 <input type="text" id="contact-first-name" name="first_name" placeholder="First name" required pattern="^[A-Za-z][A-Za-z\s'-]{1,}$" title="Enter a valid first name.">
@@ -133,9 +90,14 @@
 
     <!-- Footer -->
     <footer class="site-footer">
-        <p>Built by <a href="https://motivefx.com" target="_blank" rel="noopener">motiveFx</a></p>
+        <p>
+            <span data-content="footer.creditText">Built by</span>
+            <a data-content-footer-credit href="https://motivefx.com" target="_blank" rel="noopener">motiveFx</a>
+        </p>
     </footer>
 
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="js/content-loader.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
