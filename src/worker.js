@@ -30,15 +30,7 @@ async function handleSubmit(request, env) {
             }
         }
 
-        const email = (formData.get('email') || '').trim();
-        const name  = (formData.get('name')  || '').trim();
-
-        if (!email) {
-            return jsonError('Email is required.', 400);
-        }
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            return jsonError('Invalid email address.', 400);
-        }
+        const name = (formData.get('name') || '').trim();
 
         // Turnstile verification (optional — skipped if secret not configured)
         if (env.TURNSTILE_SECRET_KEY) {
@@ -51,7 +43,6 @@ async function handleSubmit(request, env) {
 
         // Load business info from content.json
         const content = await fetchContent(env, request);
-        const bizName  = content?.business?.name  || 'The Team';
         const ownerEmail = content?.business?.email || env.OWNER_EMAIL;
 
         if (!ownerEmail) {
@@ -71,21 +62,6 @@ async function handleSubmit(request, env) {
             to:      ownerEmail,
             subject: `New inquiry${name ? ' from ' + name : ''}`,
             body:    notifLines.join('\n'),
-        });
-
-        // Confirmation to customer
-        await sendEmail(env, region, {
-            from:    fromEmail,
-            to:      email,
-            subject: `We received your message`,
-            body: [
-                `Hi ${name},`,
-                ``,
-                `Thanks for reaching out. We received your message and will be in touch shortly.`,
-                ``,
-                `Best,`,
-                bizName,
-            ].join('\n'),
         });
 
         return jsonOk();
