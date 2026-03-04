@@ -97,12 +97,6 @@
         });
     }
 
-    /* Form action */
-    var form = document.getElementById('contact-form');
-    if (form && data.contact && data.contact.formAction) {
-        form.setAttribute('action', data.contact.formAction);
-    }
-
     /* Footer credit link */
     var creditLink = document.querySelector('[data-content-footer-credit]');
     if (creditLink && data.footer) {
