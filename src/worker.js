@@ -23,7 +23,9 @@ async function handleSubmit(request, env) {
             }
         }
 
-        const name = (formData.get('name') || '').trim();
+        const firstName = (formData.get('first_name') || '').trim();
+        const lastName  = (formData.get('last_name')  || '').trim();
+        const name = (formData.get('name') || [firstName, lastName].filter(Boolean).join(' ')).trim();
 
         // Turnstile verification (optional — skipped if secret not configured)
         if (env.TURNSTILE_SECRET_KEY) {
@@ -44,6 +46,7 @@ async function handleSubmit(request, env) {
         }
 
         const fromEmail = env.FROM_EMAIL || 'noreply@vibefly.ai';
+        const site = fromEmail.split('@')[1] || '';
 
         // Notification to site owner
         const notifLines = fields.map(f =>
@@ -52,7 +55,7 @@ async function handleSubmit(request, env) {
         await sendEmail(env, {
             from:    fromEmail,
             to:      ownerEmail,
-            subject: `New inquiry${name ? ' from ' + name : ''}`,
+            subject: `${site ? '[' + site + '] ' : ''}New inquiry${name ? ' from ' + name : ''}`,
             body:    notifLines.join('\n'),
         });
 
