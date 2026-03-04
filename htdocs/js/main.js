@@ -113,6 +113,7 @@
 
         requestAnimationFrame(function () {
             sending.classList.add('is-visible');
+            sending.scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
 
         /* Cycle status messages */
@@ -186,6 +187,8 @@
     }
 
     function showThankYou() {
+        contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
         heading.style.opacity = '0';
         setTimeout(function () {
             heading.textContent = formCfg.thankYouHeading || 'Thank You';

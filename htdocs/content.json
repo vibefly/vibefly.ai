@@ -16,8 +16,14 @@
     "tld": ".ai"
   },
   "nav": [
-    { "label": "How It Works", "href": "#how-it-works" },
-    { "label": "Get Started", "href": "#contact" }
+    {
+      "label": "How It Works",
+      "href": "#how-it-works"
+    },
+    {
+      "label": "Get Started",
+      "href": "#contact"
+    }
   ],
   "hero": {
     "tagline": "AI-Powered Web Design",
@@ -53,26 +59,28 @@
   "contact": {
     "heading": "Get in Touch",
     "subtext": "Tell us about your project. We'll respond within one business day.",
-    "formAction": "https://formspree.io/f/mldqvzwg",
-    "statusMessages": [
-      "Waking up the carrier pigeons\u2026",
-      "Teaching your message to fly\u2026",
-      "Bribing the mail server with cookies\u2026",
-      "Encrypting with good vibes\u2026",
-      "Folding your message into a paper airplane\u2026",
-      "Convincing the internet you\u2019re not a robot\u2026",
-      "Pouring coffee for the server\u2026",
-      "Negotiating with the WiFi gods\u2026",
-      "Almost there, pinky promise\u2026"
+"statusMessages": [
+      "Waking up the carrier pigeons…",
+      "Teaching your message to fly…",
+      "Bribing the mail server with cookies…",
+      "Encrypting with good vibes…",
+      "Folding your message into a paper airplane…",
+      "Convincing the internet you’re not a robot…",
+      "Pouring coffee for the server…",
+      "Negotiating with the WiFi gods…",
+      "Almost there, pinky promise…"
     ],
     "deliveredMessage": "Message delivered!",
     "thankYouHeading": "Thank You",
     "thankYouMessage": "We received your message and look forward to speaking with you.",
-    "thankYouSubtext": "We\u2019ll respond within one business day."
+    "thankYouSubtext": "We’ll respond within one business day."
   },
   "footer": {
     "creditText": "Built by",
     "creditName": "motiveFx",
     "creditUrl": "https://motivefx.com"
+  },
+  "business": {
+    "email": "emcweeney@gmail.com"
   }
 }
