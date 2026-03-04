@@ -14,13 +14,8 @@ async function handleSubmit(request, env) {
     try {
         const formData = await request.formData();
 
-        // Honeypot — bots fill this in, humans don't
-        if (formData.get('_hp')) {
-            return jsonOk();
-        }
-
         // Collect all non-system fields
-        const systemFields = new Set(['_hp', 'cf-turnstile-response']);
+        const systemFields = new Set(['_gotcha', 'cf-turnstile-response']);
         const fields = [];
         for (const [key, val] of formData.entries()) {
             if (!systemFields.has(key)) {
