@@ -59,8 +59,7 @@
   "contact": {
     "heading": "Get in Touch",
     "subtext": "Tell us about your project. We'll respond within one business day.",
-    "formAction": "https://formspree.io/f/mldqvzwg",
-    "statusMessages": [
+"statusMessages": [
       "Waking up the carrier pigeons…",
       "Teaching your message to fly…",
       "Bribing the mail server with cookies…",
