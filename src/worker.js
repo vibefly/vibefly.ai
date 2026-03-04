@@ -1,5 +1,3 @@
-import { signRequest } from './sigv4.js';
-
 export default {
     async fetch(request, env) {
         const url = new URL(request.url);
@@ -51,13 +49,12 @@ async function handleSubmit(request, env) {
         }
 
         const fromEmail = env.FROM_EMAIL || 'noreply@vibefly.ai';
-        const region    = env.AWS_REGION || 'us-east-1';
 
         // Notification to site owner
         const notifLines = fields.map(f =>
             `${f.name.charAt(0).toUpperCase() + f.name.slice(1)}: ${f.value || '(not provided)'}`
         );
-        await sendEmail(env, region, {
+        await sendEmail(env, {
             from:    fromEmail,
             to:      ownerEmail,
             subject: `New inquiry${name ? ' from ' + name : ''}`,
@@ -93,35 +90,19 @@ async function verifyTurnstile(token, secretKey) {
     return data.success === true;
 }
 
-async function sendEmail(env, region, { from, to, subject, body }) {
-    const endpoint = `https://email.${region}.amazonaws.com/v2/email/outbound-emails`;
-
-    const payload = JSON.stringify({
-        FromEmailAddress: from,
-        Destination: { ToAddresses: [to] },
-        Content: {
-            Simple: {
-                Subject: { Data: subject, Charset: 'UTF-8' },
-                Body:    { Text: { Data: body, Charset: 'UTF-8' } },
-            },
-        },
-    });
-
-    const headers = await signRequest({
+async function sendEmail(env, { from, to, subject, body }) {
+    const res = await fetch('https://api.resend.com/emails', {
         method: 'POST',
-        url: endpoint,
-        body: payload,
-        service: 'ses',
-        region,
-        accessKeyId:     env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: env.AWS_SECRET_ACCESS_KEY,
+        headers: {
+            'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ from, to: [to], subject, text: body }),
     });
-
-    const res = await fetch(endpoint, { method: 'POST', headers, body: payload });
 
     if (!res.ok) {
         const text = await res.text();
-        throw new Error(`SES ${res.status}: ${text}`);
+        throw new Error(`Resend ${res.status}: ${text}`);
     }
 }
 
