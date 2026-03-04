@@ -14,18 +14,19 @@ async function handleSubmit(request, env) {
     try {
         const formData = await request.formData();
 
-        // Collect all non-system fields
-        const systemFields = new Set(['_gotcha', 'cf-turnstile-response']);
-        const fields = [];
-        for (const [key, val] of formData.entries()) {
-            if (!systemFields.has(key)) {
-                fields.push({ name: key, value: val.toString().trim() });
-            }
-        }
-
+        // Collect all non-system fields, merging first_name+last_name into Name
+        const systemFields = new Set(['_gotcha', 'cf-turnstile-response', 'first_name', 'last_name']);
         const firstName = (formData.get('first_name') || '').trim();
         const lastName  = (formData.get('last_name')  || '').trim();
         const name = (formData.get('name') || [firstName, lastName].filter(Boolean).join(' ')).trim();
+
+        const fields = [];
+        if (name) fields.push({ name: 'Name', value: name });
+        for (const [key, val] of formData.entries()) {
+            if (!systemFields.has(key) && key !== 'name') {
+                fields.push({ name: key.charAt(0).toUpperCase() + key.slice(1), value: val.toString().trim() });
+            }
+        }
 
         // Turnstile verification (optional — skipped if secret not configured)
         if (env.TURNSTILE_SECRET_KEY) {
@@ -49,9 +50,7 @@ async function handleSubmit(request, env) {
         const site = fromEmail.split('@')[1] || '';
 
         // Notification to site owner
-        const notifLines = fields.map(f =>
-            `${f.name.charAt(0).toUpperCase() + f.name.slice(1)}: ${f.value || '(not provided)'}`
-        );
+        const notifLines = fields.map(f => `${f.name}: ${f.value || '(not provided)'}`);
         await sendEmail(env, {
             from:    fromEmail,
             to:      ownerEmail,
