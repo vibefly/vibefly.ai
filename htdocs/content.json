@@ -84,17 +84,17 @@
         "required": true
       },
       {
+        "type": "text",
+        "name": "company",
+        "label": "Company",
+        "placeholder": "Your company"
+      },
+      {
         "type": "email",
         "name": "email",
         "label": "Email",
         "placeholder": "you@example.com",
         "required": true
-      },
-      {
-        "type": "text",
-        "name": "company",
-        "label": "Company",
-        "placeholder": "Your company"
       },
       {
         "type": "tel",
