@@ -82,6 +82,33 @@
         "label": "Name",
         "placeholder": "Your name",
         "required": true
+      },
+      {
+        "type": "email",
+        "name": "email",
+        "label": "Email",
+        "placeholder": "you@example.com",
+        "required": true
+      },
+      {
+        "type": "text",
+        "name": "company",
+        "label": "Company",
+        "placeholder": "Your company"
+      },
+      {
+        "type": "tel",
+        "name": "phone",
+        "label": "Phone",
+        "placeholder": "(555) 123-4567"
+      },
+      {
+        "type": "textarea",
+        "name": "message",
+        "label": "Message",
+        "placeholder": "What can we do for you?",
+        "required": true,
+        "rows": 5
       }
     ],
     "submitLabel": "Send Message",
