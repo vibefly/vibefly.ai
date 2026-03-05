@@ -745,13 +745,18 @@ h3 {
 }
 
 /* ---------- Contact form — direct injection (no .form-row wrapper) ---------- */
+/* Tighten gap: labels+inputs are individual flex children, not wrapped in .form-row */
+.contact-form {
+    gap: 0.25rem;
+}
+
 .contact-form label {
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     font-size: 0.85rem;
     color: var(--color-text-secondary);
-    margin-top: 1rem;
+    margin-top: 1.25rem;
     display: block;
 }
 
@@ -773,8 +778,6 @@ h3 {
     border-radius: var(--border-radius);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
     transition: border var(--transition-speed), box-shadow var(--transition-speed), background var(--transition-speed);
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
 }
 
 .contact-form input:focus,
