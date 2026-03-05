@@ -153,7 +153,9 @@
             var useAlt = idx % 2 === 1;
 
             var section = document.createElement('section');
-            section.className = 'section' + (useAlt ? ' section--alt' : '');
+            /* section-visible added immediately: main.js IntersectionObserver runs before
+               content-loader finishes async work so it can't observe dynamic sections */
+            section.className = 'section section-visible' + (useAlt ? ' section--alt' : '');
             if (sec.id) section.id = sec.id;
 
             var container = document.createElement('div');
