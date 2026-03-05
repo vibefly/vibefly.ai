@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "vibefly.ai \u2014 AI-Powered Websites by motiveFx",
+    "title": "vibefly.ai — AI-Powered Websites by motiveFx",
     "description": "AI-powered websites that accelerate business growth. Built and refined by intelligent agents. A motiveFx product."
   },
   "theme": {
@@ -18,8 +18,14 @@
     "tld": ".ai"
   },
   "nav": [
-    { "label": "How It Works", "href": "#how-it-works" },
-    { "label": "Get Started", "href": "#contact" }
+    {
+      "label": "How It Works",
+      "href": "#how-it-works"
+    },
+    {
+      "label": "Get Started",
+      "href": "#contact"
+    }
   ],
   "business": {
     "name": "vibefly.ai",
@@ -29,7 +35,7 @@
   "hero": {
     "label": "AI-Powered Web Design",
     "title": "Websites that accelerate growth",
-    "subtext": "Intelligent agents design, build, and refine your website \u2014 so you can focus on your business.",
+    "subtext": "Intelligent agents design, build, and refine your website — so you can focus on your business.",
     "ctaText": "Get Started",
     "ctaHref": "#contact"
   },
@@ -45,19 +51,19 @@
               "icon": "palette",
               "number": "01",
               "title": "Design Direction",
-              "text": "We establish your brand\u2019s visual identity \u2014 combining AI analysis with human creative direction to define the look and feel."
+              "text": "We establish your brand’s visual identity — combining AI analysis with human creative direction to define the look and feel."
             },
             {
               "icon": "code-2",
               "number": "02",
               "title": "Build & Deploy",
-              "text": "Your site is built and deployed automatically \u2014 fast, clean code pushed live to a global edge network."
+              "text": "Your site is built and deployed automatically — fast, clean code pushed live to a global edge network."
             },
             {
               "icon": "layers",
               "number": "03",
               "title": "Refine & Evolve",
-              "text": "Our AI agent continuously refines your site \u2014 updating content, optimizing performance, and adapting to your needs."
+              "text": "Our AI agent continuously refines your site — updating content, optimizing performance, and adapting to your needs."
             }
           ]
         }
@@ -66,33 +72,62 @@
   },
   "contact": {
     "heading": "Get in Touch",
-    "subheading": "Tell us about your project. We\u2019ll respond within one business day."
+    "subheading": "Tell us about your project. We’ll respond within one business day."
   },
   "form": {
     "fields": [
-      { "type": "text",     "name": "name",    "label": "Name",    "placeholder": "Your name",             "required": true },
-      { "type": "email",    "name": "email",   "label": "Email",   "placeholder": "you@example.com",       "required": true },
-      { "type": "text",     "name": "company", "label": "Company", "placeholder": "Your company" },
-      { "type": "tel",      "name": "phone",   "label": "Phone",   "placeholder": "(555) 123-4567" },
-      { "type": "textarea", "name": "message", "label": "Message", "placeholder": "What can we do for you?", "required": true, "rows": 5 }
+      {
+        "type": "text",
+        "name": "name",
+        "label": "Name",
+        "placeholder": "Your name",
+        "required": true
+      },
+      {
+        "type": "email",
+        "name": "email",
+        "label": "Email",
+        "placeholder": "you@example.com",
+        "required": true
+      },
+      {
+        "type": "text",
+        "name": "company",
+        "label": "Company",
+        "placeholder": "Your company"
+      },
+      {
+        "type": "tel",
+        "name": "phone",
+        "label": "Phone",
+        "placeholder": "(555) 123-4567"
+      },
+      {
+        "type": "textarea",
+        "name": "message",
+        "label": "Message",
+        "placeholder": "What can we do for you?",
+        "required": true,
+        "rows": 5
+      }
     ],
     "submitLabel": "Send Message",
-    "turnstileSiteKey": "",
+    "turnstileSiteKey": "0x4AAAAAACmdkMTTP-dTl3bZ",
     "statusMessages": [
-      "Waking up the carrier pigeons\u2026",
-      "Teaching your message to fly\u2026",
-      "Bribing the mail server with cookies\u2026",
-      "Encrypting with good vibes\u2026",
-      "Folding your message into a paper airplane\u2026",
-      "Convincing the internet you\u2019re not a robot\u2026",
-      "Pouring coffee for the server\u2026",
-      "Negotiating with the WiFi gods\u2026",
-      "Almost there, pinky promise\u2026"
+      "Waking up the carrier pigeons…",
+      "Teaching your message to fly…",
+      "Bribing the mail server with cookies…",
+      "Encrypting with good vibes…",
+      "Folding your message into a paper airplane…",
+      "Convincing the internet you’re not a robot…",
+      "Pouring coffee for the server…",
+      "Negotiating with the WiFi gods…",
+      "Almost there, pinky promise…"
     ],
     "deliveredMessage": "Message delivered!",
     "thankYouHeading": "Thank You",
     "thankYouMessage": "We received your message and look forward to speaking with you.",
-    "thankYouSubtext": "We\u2019ll respond within one business day.",
+    "thankYouSubtext": "We’ll respond within one business day.",
     "errorMessage": "Something went wrong. Please try again or email us directly."
   },
   "footer": {
