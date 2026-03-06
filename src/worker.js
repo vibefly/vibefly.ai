@@ -6,29 +6,75 @@ export default {
             return handleSubmit(request, env);
         }
 
+        // Server-side meta tag injection for SEO
+        if (request.method === 'GET' && (url.pathname === '/' || url.pathname === '/index.html')) {
+            return injectMeta(request, env, url);
+        }
+
         return env.ASSETS.fetch(request);
     }
 };
+
+async function injectMeta(request, env, url) {
+    try {
+        const [htmlRes, contentRes] = await Promise.all([
+            env.ASSETS.fetch(new Request(request.url)),
+            env.ASSETS.fetch(new Request(new URL('/content.json', url).href)),
+        ]);
+
+        if (!htmlRes.ok || !contentRes.ok) return env.ASSETS.fetch(request);
+
+        const [html, content] = await Promise.all([htmlRes.text(), contentRes.json()]);
+
+        const title       = escAttr(content?.meta?.title       || content?.business?.name || '');
+        const description = escAttr(content?.meta?.description || '');
+        const canonical   = escAttr(url.origin + url.pathname);
+
+        const ogTags = [
+            `<meta property="og:type" content="website">`,
+            `<meta property="og:url" content="${canonical}">`,
+            `<meta property="og:title" content="${title}">`,
+            `<meta property="og:description" content="${description}">`,
+        ].join('\n    ');
+
+        const out = html
+            .replace(/<title>[^<]*<\/title>/, `<title>${escHtml(content?.meta?.title || content?.business?.name || '')}</title>`)
+            .replace(/(<meta name="description"[^>]*>)/, `<meta name="description" content="${description}">\n    ${ogTags}`);
+
+        return new Response(out, {
+            status: 200,
+            headers: { 'Content-Type': 'text/html;charset=UTF-8' },
+        });
+    } catch {
+        return env.ASSETS.fetch(request);
+    }
+}
+
+function escHtml(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function escAttr(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+}
 
 async function handleSubmit(request, env) {
     try {
         const formData = await request.formData();
 
-        // Honeypot — bots fill this in, humans don't
-        if (formData.get('_hp')) {
-            return jsonOk();
-        }
+        // Collect all non-system fields, merging first_name+last_name into Name
+        const systemFields = new Set(['_gotcha', 'cf-turnstile-response', 'first_name', 'last_name']);
+        const firstName = (formData.get('first_name') || '').trim();
+        const lastName  = (formData.get('last_name')  || '').trim();
+        const name = (formData.get('name') || [firstName, lastName].filter(Boolean).join(' ')).trim();
 
-        // Collect all non-system fields
-        const systemFields = new Set(['_hp', 'cf-turnstile-response']);
         const fields = [];
+        if (name) fields.push({ name: 'Name', value: name });
         for (const [key, val] of formData.entries()) {
-            if (!systemFields.has(key)) {
-                fields.push({ name: key, value: val.toString().trim() });
+            if (!systemFields.has(key) && key !== 'name') {
+                fields.push({ name: key.charAt(0).toUpperCase() + key.slice(1), value: val.toString().trim() });
             }
         }
-
-        const name = (formData.get('name') || '').trim();
 
         // Turnstile verification (optional — skipped if secret not configured)
         if (env.TURNSTILE_SECRET_KEY) {
@@ -49,15 +95,14 @@ async function handleSubmit(request, env) {
         }
 
         const fromEmail = env.FROM_EMAIL || 'noreply@vibefly.ai';
+        const site = fromEmail.split('@')[1] || '';
 
         // Notification to site owner
-        const notifLines = fields.map(f =>
-            `${f.name.charAt(0).toUpperCase() + f.name.slice(1)}: ${f.value || '(not provided)'}`
-        );
+        const notifLines = fields.map(f => `${f.name}: ${f.value || '(not provided)'}`);
         await sendEmail(env, {
             from:    fromEmail,
             to:      ownerEmail,
-            subject: `New inquiry${name ? ' from ' + name : ''}`,
+            subject: `${site ? '[' + site + '] ' : ''}New inquiry${name ? ' from ' + name : ''}`,
             body:    notifLines.join('\n'),
         });
 
