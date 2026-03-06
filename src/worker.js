@@ -6,9 +6,57 @@ export default {
             return handleSubmit(request, env);
         }
 
+        // Server-side meta tag injection for SEO
+        if (request.method === 'GET' && (url.pathname === '/' || url.pathname === '/index.html')) {
+            return injectMeta(request, env, url);
+        }
+
         return env.ASSETS.fetch(request);
     }
 };
+
+async function injectMeta(request, env, url) {
+    try {
+        const [htmlRes, contentRes] = await Promise.all([
+            env.ASSETS.fetch(new Request(request.url)),
+            env.ASSETS.fetch(new Request(new URL('/content.json', url).href)),
+        ]);
+
+        if (!htmlRes.ok || !contentRes.ok) return env.ASSETS.fetch(request);
+
+        const [html, content] = await Promise.all([htmlRes.text(), contentRes.json()]);
+
+        const title       = escAttr(content?.meta?.title       || content?.business?.name || '');
+        const description = escAttr(content?.meta?.description || '');
+        const canonical   = escAttr(url.origin + url.pathname);
+
+        const ogTags = [
+            `<meta property="og:type" content="website">`,
+            `<meta property="og:url" content="${canonical}">`,
+            `<meta property="og:title" content="${title}">`,
+            `<meta property="og:description" content="${description}">`,
+        ].join('\n    ');
+
+        const out = html
+            .replace(/<title>[^<]*<\/title>/, `<title>${escHtml(content?.meta?.title || content?.business?.name || '')}</title>`)
+            .replace(/(<meta name="description"[^>]*>)/, `<meta name="description" content="${description}">\n    ${ogTags}`);
+
+        return new Response(out, {
+            status: 200,
+            headers: { 'Content-Type': 'text/html;charset=UTF-8' },
+        });
+    } catch {
+        return env.ASSETS.fetch(request);
+    }
+}
+
+function escHtml(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function escAttr(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+}
 
 async function handleSubmit(request, env) {
     try {
