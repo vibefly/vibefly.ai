@@ -3,6 +3,27 @@
 (async function () {
     'use strict';
 
+    /* SSR fast path: Worker has already rendered all content into HTML */
+    if (window.__BUSINESS) {
+        var formCfg = window.__FORM_CONFIG || {};
+        if (formCfg.turnstileSiteKey) {
+            var tsContainer = document.getElementById('cf-turnstile');
+            var tsTheme = (tsContainer && tsContainer.dataset.theme) || 'light';
+            function renderTurnstile() {
+                if (window.turnstile) {
+                    turnstile.render('#cf-turnstile', { sitekey: formCfg.turnstileSiteKey, theme: tsTheme });
+                } else {
+                    setTimeout(renderTurnstile, 50);
+                }
+            }
+            renderTurnstile();
+        }
+        if (window.lucide) try { lucide.createIcons(); } catch (e) {}
+        document.body.classList.add('content-loaded');
+        return;
+    }
+
+    /* Non-SSR fallback (local dev / no Worker) */
     var data;
     try { data = await window.__CONTENT; } catch (e) { return; }
     if (!data) return;
@@ -340,7 +361,7 @@
             tsContainer.id = 'cf-turnstile';
             formEl.insertBefore(tsContainer, submitBtn);
             var tsTheme = 'light';
-            if (data.theme && (data.theme.bg || data.theme.bgDark)) {
+            if (data.theme && (data.theme.bgDark || data.theme.bg)) {
                 var hex = (data.theme.bg || data.theme.bgDark).replace('#', '');
                 var r = parseInt(hex.substring(0, 2), 16) / 255;
                 var g = parseInt(hex.substring(2, 4), 16) / 255;
