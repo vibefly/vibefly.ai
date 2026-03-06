@@ -339,9 +339,17 @@
             var tsContainer = document.createElement('div');
             tsContainer.id = 'cf-turnstile';
             formEl.insertBefore(tsContainer, submitBtn);
+            var tsTheme = 'light';
+            if (data.theme && (data.theme.bg || data.theme.bgDark)) {
+                var hex = (data.theme.bg || data.theme.bgDark).replace('#', '');
+                var r = parseInt(hex.substring(0, 2), 16) / 255;
+                var g = parseInt(hex.substring(2, 4), 16) / 255;
+                var b = parseInt(hex.substring(4, 6), 16) / 255;
+                tsTheme = (0.2126 * r + 0.7152 * g + 0.0722 * b) > 0.5 ? 'light' : 'dark';
+            }
             function renderTurnstile() {
                 if (window.turnstile) {
-                    turnstile.render('#cf-turnstile', { sitekey: formCfg.turnstileSiteKey });
+                    turnstile.render('#cf-turnstile', { sitekey: formCfg.turnstileSiteKey, theme: tsTheme });
                 } else {
                     setTimeout(renderTurnstile, 50);
                 }
