@@ -9,6 +9,7 @@ OWNER_EMAIL = "emcweeney@gmail.com"
 [assets]
 directory = "./htdocs"
 binding = "ASSETS"
+run_worker_first = true
 
 [env.dev]
 name = "vibefly-ai-dev"
