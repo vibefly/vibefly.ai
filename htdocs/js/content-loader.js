@@ -19,6 +19,7 @@
             renderTurnstile();
         }
         if (window.lucide) try { lucide.createIcons(); } catch (e) {}
+        initPricingToggle();
         document.body.classList.add('content-loaded');
         return;
     }
