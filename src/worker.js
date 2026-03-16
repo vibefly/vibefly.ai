@@ -201,7 +201,8 @@ async function renderPage(env, url) {
 }
 
 function renderSection(sec, idx) {
-    const isTestimonial = sec.items && sec.items.length > 0 && sec.items[0].quote !== undefined;
+    const isPricing     = sec.type === 'pricing';
+    const isTestimonial = !isPricing && sec.items && sec.items.length > 0 && sec.items[0].quote !== undefined;
     const useAlt = idx % 2 === 1;
     const idAttr = sec.id ? ` id="${escAttr(sec.id)}"` : '';
 
@@ -212,7 +213,23 @@ function renderSection(sec, idx) {
 
     let gridHtml = '';
     if (sec.items && sec.items.length > 0) {
-        if (isTestimonial) {
+        if (isPricing) {
+            const cards = sec.items.map(item => {
+                const featured = item.featured ? ' pricing-card--featured' : '';
+                const badge = item.featured ? '' : '';
+                const turnaround = item.turnaround ? `<p class="pricing-card__turnaround">${escHtml(item.turnaround)}</p>` : '';
+                const bullets = (item.bullets || []).map(b => `<li>${escHtml(b)}</li>`).join('');
+                const cta = item.cta ? `<a class="pricing-card__cta" href="${escAttr(item.ctaHref || '#contact')}">${escHtml(item.cta)}</a>` : '';
+                return `<div class="pricing-card${featured}">` +
+                    `<h3 class="pricing-card__name">${escHtml(item.name || '')}</h3>` +
+                    `<div class="pricing-card__price"><span class="pricing-card__amount">${escHtml(item.price || '')}</span><span class="pricing-card__period">${escHtml(item.period || '/mo')}</span></div>` +
+                    turnaround +
+                    `<ul class="pricing-card__bullets">${bullets}</ul>` +
+                    cta +
+                    `</div>`;
+            }).join('');
+            gridHtml = `<div class="pricing-grid">${cards}</div>`;
+        } else if (isTestimonial) {
             const cards = sec.items.map(item => {
                 const stars = Array(item.stars || 5).fill(
                     `<svg width="20" height="20" viewBox="0 0 20 20" fill="var(--color-star)"><path d="M10 1l2.5 5.5H18l-4.5 3.5 1.5 5.5L10 13l-5 2.5 1.5-5.5L2 6.5h5.5z"/></svg>`
