@@ -91,7 +91,9 @@
                 "1 hr/mo dedicated support"
               ],
               "cta": "Get Started",
-              "ctaHref": "#contact"
+              "ctaHref": "#contact",
+              "annualPrice": "$299",
+              "annualSavings": "Save $60/yr"
             },
             {
               "name": "Growth",
@@ -108,7 +110,9 @@
                 "2 hrs/mo dedicated support"
               ],
               "cta": "Get Started",
-              "ctaHref": "#contact"
+              "ctaHref": "#contact",
+              "annualPrice": "$499",
+              "annualSavings": "Save $100/yr"
             },
             {
               "name": "Pro",
@@ -124,9 +128,32 @@
                 "3 hrs/mo dedicated support"
               ],
               "cta": "Get Started",
-              "ctaHref": "#contact"
+              "ctaHref": "#contact",
+              "annualPrice": "$799",
+              "annualSavings": "Save $160/yr"
             }
-          ]
+          ],
+          "launchFee": {
+            "heading": "One-Time Launch Fee",
+            "columns": [
+              "",
+              "Standard Template",
+              "Custom Template"
+            ],
+            "rows": [
+              [
+                "Single Page",
+                "$199",
+                "$499"
+              ],
+              [
+                "Multi-Page (up to 5 pages)",
+                "$499",
+                "$999"
+              ]
+            ],
+            "footnote": "Additional pages +$99 each"
+          }
         }
       ]
     }
