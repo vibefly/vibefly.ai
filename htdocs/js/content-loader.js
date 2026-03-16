@@ -171,6 +171,7 @@
     if (sectionsContainer && sections.length > 0) {
         sections.forEach(function (sec, idx) {
             var isTestimonial = sec.items && sec.items.length > 0 && sec.items[0].quote !== undefined;
+            var isPricing = sec.type === 'pricing';
             var useAlt = idx % 2 === 1;
 
             var section = document.createElement('section');
@@ -208,7 +209,67 @@
             /* Items grid */
             if (sec.items && sec.items.length > 0) {
                 var grid = document.createElement('div');
-                if (isTestimonial) {
+                if (isPricing) {
+                    grid.className = 'pricing-grid';
+                    sec.items.forEach(function (item) {
+                        var card = document.createElement('div');
+                        card.className = 'pricing-card' + (item.featured ? ' pricing-card--featured' : '');
+
+                        // header
+                        var nameEl = document.createElement('h3');
+                        nameEl.className = 'pricing-card__name';
+                        nameEl.textContent = item.name;
+                        card.appendChild(nameEl);
+
+                        var priceWrap = document.createElement('div');
+                        priceWrap.className = 'pricing-card__price';
+                        var amount = document.createElement('span');
+                        amount.className = 'pricing-card__amount';
+                        amount.textContent = item.price;
+                        var period = document.createElement('span');
+                        period.className = 'pricing-card__period';
+                        period.textContent = item.period || '/mo';
+                        priceWrap.appendChild(amount);
+                        priceWrap.appendChild(period);
+                        card.appendChild(priceWrap);
+
+                        if (item.turnaround) {
+                            var tEl = document.createElement('p');
+                            tEl.className = 'pricing-card__turnaround';
+                            tEl.textContent = item.turnaround;
+                            card.appendChild(tEl);
+                        }
+
+                        if (item.bullets && item.bullets.length) {
+                            var ul = document.createElement('ul');
+                            ul.className = 'pricing-card__bullets';
+                            item.bullets.forEach(function (b) {
+                                var li = document.createElement('li');
+                                li.textContent = b;
+                                ul.appendChild(li);
+                            });
+                            card.appendChild(ul);
+                        }
+
+                        if (item.cta) {
+                            var cta = document.createElement('a');
+                            cta.className = 'pricing-card__cta';
+                            cta.href = item.ctaHref || '#contact';
+                            cta.textContent = item.cta;
+                            card.appendChild(cta);
+                        }
+
+                        // selectable highlight on click
+                        card.addEventListener('click', function () {
+                            grid.querySelectorAll('.pricing-card').forEach(function (c) {
+                                c.classList.remove('pricing-card--selected');
+                            });
+                            card.classList.add('pricing-card--selected');
+                        });
+
+                        grid.appendChild(card);
+                    });
+                } else if (isTestimonial) {
                     grid.className = 'testimonials-grid';
                     sec.items.forEach(function (item) {
                         var card = document.createElement('div');
