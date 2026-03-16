@@ -210,12 +210,68 @@
             if (sec.items && sec.items.length > 0) {
                 var grid = document.createElement('div');
                 if (isPricing) {
+                    var outerWrap = document.createElement('div');
+                    outerWrap.id = 'pricing-toggle-wrap';
+
+                    // Launch fee table
+                    if (sec.launchFee) {
+                        var lf = sec.launchFee;
+                        var lfDiv = document.createElement('div');
+                        lfDiv.className = 'launch-fee';
+                        var lfLabel = document.createElement('p');
+                        lfLabel.className = 'launch-fee__label';
+                        lfLabel.textContent = lf.heading || '';
+                        lfDiv.appendChild(lfLabel);
+                        var table = document.createElement('table');
+                        table.className = 'launch-fee__table';
+                        var thead = document.createElement('thead');
+                        var hrow = document.createElement('tr');
+                        (lf.columns || []).forEach(function (col) {
+                            var th = document.createElement('th');
+                            th.textContent = col;
+                            hrow.appendChild(th);
+                        });
+                        thead.appendChild(hrow);
+                        table.appendChild(thead);
+                        var tbody = document.createElement('tbody');
+                        (lf.rows || []).forEach(function (row) {
+                            var tr = document.createElement('tr');
+                            row.forEach(function (cell, i) {
+                                var td = document.createElement('td');
+                                if (i > 0) td.className = 'launch-fee__price';
+                                td.textContent = cell;
+                                tr.appendChild(td);
+                            });
+                            tbody.appendChild(tr);
+                        });
+                        table.appendChild(tbody);
+                        lfDiv.appendChild(table);
+                        if (lf.footnote) {
+                            var fn = document.createElement('p');
+                            fn.className = 'launch-fee__footnote';
+                            fn.textContent = lf.footnote;
+                            lfDiv.appendChild(fn);
+                        }
+                        outerWrap.appendChild(lfDiv);
+                    }
+
+                    // Toggle
+                    var toggle = document.createElement('div');
+                    toggle.className = 'pricing-toggle';
+                    ['monthly', 'annual'].forEach(function (period, i) {
+                        var btn = document.createElement('button');
+                        btn.className = 'pricing-toggle__btn' + (i === 0 ? ' is-active' : '');
+                        btn.dataset.period = period;
+                        btn.textContent = period.charAt(0).toUpperCase() + period.slice(1);
+                        toggle.appendChild(btn);
+                    });
+                    outerWrap.appendChild(toggle);
+
                     grid.className = 'pricing-grid';
                     sec.items.forEach(function (item) {
                         var card = document.createElement('div');
                         card.className = 'pricing-card' + (item.featured ? ' pricing-card--featured' : '');
 
-                        // header
                         var nameEl = document.createElement('h3');
                         nameEl.className = 'pricing-card__name';
                         nameEl.textContent = item.name;
@@ -226,12 +282,21 @@
                         var amount = document.createElement('span');
                         amount.className = 'pricing-card__amount';
                         amount.textContent = item.price;
+                        amount.dataset.monthly = item.price || '';
+                        amount.dataset.annual = item.annualPrice || item.price || '';
                         var period = document.createElement('span');
                         period.className = 'pricing-card__period';
-                        period.textContent = item.period || '/mo';
+                        period.textContent = '/mo';
                         priceWrap.appendChild(amount);
                         priceWrap.appendChild(period);
                         card.appendChild(priceWrap);
+
+                        if (item.annualSavings) {
+                            var savings = document.createElement('p');
+                            savings.className = 'pricing-card__savings';
+                            savings.textContent = item.annualSavings;
+                            card.appendChild(savings);
+                        }
 
                         if (item.turnaround) {
                             var tEl = document.createElement('p');
@@ -259,7 +324,6 @@
                             card.appendChild(cta);
                         }
 
-                        // selectable highlight on click
                         card.addEventListener('click', function () {
                             grid.querySelectorAll('.pricing-card').forEach(function (c) {
                                 c.classList.remove('pricing-card--selected');
@@ -269,6 +333,8 @@
 
                         grid.appendChild(card);
                     });
+                    outerWrap.appendChild(grid);
+                    container.appendChild(outerWrap);
                 } else if (isTestimonial) {
                     grid.className = 'testimonials-grid';
                     sec.items.forEach(function (item) {
@@ -453,6 +519,8 @@
         copyrightEl.textContent = data.footer.copyright;
     }
 
+    initPricingToggle();
+
     /* Render Lucide icons */
     if (window.lucide) {
         try { lucide.createIcons(); } catch (e) { console.warn('Lucide render error:', e); }
@@ -461,6 +529,41 @@
     /* Reveal page */
     document.body.classList.add('content-loaded');
 })();
+
+
+/* ── Pricing toggle (monthly / annual) ── */
+function initPricingToggle() {
+    var wrap = document.getElementById('pricing-toggle-wrap');
+    if (!wrap) return;
+    var btns = wrap.querySelectorAll('.pricing-toggle__btn');
+    var grid = wrap.querySelector('.pricing-grid');
+    btns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var isAnnual = btn.dataset.period === 'annual';
+            btns.forEach(function (b) { b.classList.remove('is-active'); });
+            btn.classList.add('is-active');
+            if (isAnnual) {
+                grid.classList.add('pricing-section--annual');
+                wrap.classList.add('pricing-section--annual');
+                grid.querySelectorAll('.pricing-card__amount').forEach(function (el) {
+                    el.textContent = el.dataset.annual || el.textContent;
+                });
+                grid.querySelectorAll('.pricing-card__period').forEach(function (el) {
+                    el.textContent = '/yr';
+                });
+            } else {
+                grid.classList.remove('pricing-section--annual');
+                wrap.classList.remove('pricing-section--annual');
+                grid.querySelectorAll('.pricing-card__amount').forEach(function (el) {
+                    el.textContent = el.dataset.monthly || el.textContent;
+                });
+                grid.querySelectorAll('.pricing-card__period').forEach(function (el) {
+                    el.textContent = '/mo';
+                });
+            }
+        });
+    });
+}
 
 /* Safety fallback — show page even if content.json fails */
 setTimeout(function () { document.body.classList.add('content-loaded'); }, 800);
