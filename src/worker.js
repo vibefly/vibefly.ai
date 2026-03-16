@@ -214,21 +214,36 @@ function renderSection(sec, idx) {
     let gridHtml = '';
     if (sec.items && sec.items.length > 0) {
         if (isPricing) {
+            // Launch fee table
+            let launchHtml = '';
+            if (sec.launchFee) {
+                const lf = sec.launchFee;
+                const headerCols = (lf.columns || []).map((c, i) => i === 0 ? `<th></th>` : `<th>${escHtml(c)}</th>`).join('');
+                const bodyRows = (lf.rows || []).map(row =>
+                    `<tr>${row.map((cell, i) => i === 0 ? `<td>${escHtml(cell)}</td>` : `<td class="launch-fee__price">${escHtml(cell)}</td>`).join('')}</tr>`
+                ).join('');
+                const footnote = lf.footnote ? `<p class="launch-fee__footnote">${escHtml(lf.footnote)}</p>` : '';
+                launchHtml = `<div class="launch-fee"><p class="launch-fee__label">${escHtml(lf.heading || '')}</p><table class="launch-fee__table"><thead><tr>${headerCols}</tr></thead><tbody>${bodyRows}</tbody></table>${footnote}</div>`;
+            }
+
+            // Toggle
+            const toggleHtml = `<div class="pricing-toggle"><button class="pricing-toggle__btn is-active" data-period="monthly">Monthly</button><button class="pricing-toggle__btn" data-period="annual">Annual</button></div>`;
+
+            // Cards
             const cards = sec.items.map(item => {
                 const featured = item.featured ? ' pricing-card--featured' : '';
-                const badge = item.featured ? '' : '';
                 const turnaround = item.turnaround ? `<p class="pricing-card__turnaround">${escHtml(item.turnaround)}</p>` : '';
+                const savings = item.annualSavings ? `<p class="pricing-card__savings">${escHtml(item.annualSavings)}</p>` : '';
                 const bullets = (item.bullets || []).map(b => `<li>${escHtml(b)}</li>`).join('');
                 const cta = item.cta ? `<a class="pricing-card__cta" href="${escAttr(item.ctaHref || '#contact')}">${escHtml(item.cta)}</a>` : '';
                 return `<div class="pricing-card${featured}">` +
                     `<h3 class="pricing-card__name">${escHtml(item.name || '')}</h3>` +
-                    `<div class="pricing-card__price"><span class="pricing-card__amount">${escHtml(item.price || '')}</span><span class="pricing-card__period">${escHtml(item.period || '/mo')}</span></div>` +
-                    turnaround +
+                    `<div class="pricing-card__price"><span class="pricing-card__amount" data-monthly="${escAttr(item.price || '')}" data-annual="${escAttr(item.annualPrice || item.price || '')}">${escHtml(item.price || '')}</span><span class="pricing-card__period">/mo</span></div>` +
+                    savings + turnaround +
                     `<ul class="pricing-card__bullets">${bullets}</ul>` +
-                    cta +
-                    `</div>`;
+                    cta + `</div>`;
             }).join('');
-            gridHtml = `<div class="pricing-grid">${cards}</div>`;
+            gridHtml = `<div id="pricing-toggle-wrap">${launchHtml}${toggleHtml}<div class="pricing-grid">${cards}</div></div>`;
         } else if (isTestimonial) {
             const cards = sec.items.map(item => {
                 const stars = Array(item.stars || 5).fill(
