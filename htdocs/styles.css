@@ -1030,3 +1030,110 @@ h3 {
         max-width: 480px;
     }
 }
+
+/* ---------- Launch Fee Table ---------- */
+.launch-fee {
+    margin-bottom: 3rem;
+}
+
+.launch-fee__label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-text-secondary);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.launch-fee__table {
+    width: 100%;
+    max-width: 580px;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.launch-fee__table th,
+.launch-fee__table td {
+    padding: 0.75rem 1.25rem;
+    border: 1px solid var(--color-border-card);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.launch-fee__table th {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-secondary);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.launch-fee__table td:first-child {
+    text-align: left;
+    color: var(--color-text-secondary);
+}
+
+.launch-fee__table td.launch-fee__price {
+    color: var(--color-text-primary);
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.launch-fee__footnote {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--color-text-secondary);
+    margin-top: 0.6rem;
+}
+
+/* ---------- Pricing Toggle ---------- */
+.pricing-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--color-border-card);
+    border-radius: 8px;
+    padding: 0.25rem;
+    width: fit-content;
+    margin: 0 auto 2.5rem;
+}
+
+.pricing-toggle__btn {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.5rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background var(--transition-speed), color var(--transition-speed);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.pricing-toggle__btn.is-active {
+    background: var(--color-accent-neon);
+    color: #000;
+}
+
+/* ---------- Pricing Savings Badge ---------- */
+.pricing-card__savings {
+    display: none;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #000;
+    background: var(--color-accent-neon);
+    padding: 0.2rem 0.65rem;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: -0.5rem;
+}
+
+.pricing-section--annual .pricing-card__savings {
+    display: block;
+}
