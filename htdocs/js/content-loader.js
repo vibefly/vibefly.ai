@@ -8,6 +8,7 @@
         var formCfg = window.__FORM_CONFIG || {};
         if (formCfg.turnstileSiteKey) {
             var tsContainer = document.getElementById('cf-turnstile');
+            if (tsContainer) tsContainer.style.cssText = 'align-self: center; text-align: center;';
             var tsTheme = (tsContainer && tsContainer.dataset.theme) || 'light';
             function renderTurnstile() {
                 if (window.turnstile) {
@@ -486,6 +487,7 @@
         if (formCfg.turnstileSiteKey) {
             var tsContainer = document.createElement('div');
             tsContainer.id = 'cf-turnstile';
+            tsContainer.style.cssText = 'align-self: center; text-align: center;';
             formEl.insertBefore(tsContainer, submitBtn);
             var tsTheme = 'light';
             if (data.theme && (data.theme.bgDark || data.theme.bg)) {
