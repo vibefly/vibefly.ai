@@ -724,7 +724,7 @@ h3 {
 }
 
 .card__icon {
-    color: var(--color-accent-green);
+    color: var(--color-accent-neon);
     flex-shrink: 0;
     line-height: 0;
 }
