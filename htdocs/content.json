@@ -135,24 +135,20 @@
           ],
           "launchFee": {
             "heading": "One-Time Launch Fee",
-            "columns": [
-              "",
-              "Standard Template",
-              "Custom Template"
-            ],
-            "rows": [
-              [
-                "Single Page",
-                "$199",
-                "$499"
-              ],
-              [
-                "Multi-Page (up to 5 pages)",
-                "$499",
-                "$999"
-              ]
-            ],
-            "footnote": "Additional pages +$99 each"
+            "items": [
+              {
+                "name": "Single Page",
+                "price": 199,
+                "description": "One focused page — your business, services, and contact."
+              },
+              {
+                "name": "Multi-Page",
+                "price": 499,
+                "basePages": 5,
+                "extraPagePrice": 99,
+                "description": "Up to 5 pages. Home, About, Services, and more."
+              }
+            ]
           }
         }
       ]
