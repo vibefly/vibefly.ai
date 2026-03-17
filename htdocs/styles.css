@@ -964,12 +964,13 @@ h3 {
 
 .pricing-card:hover {
     border-color: var(--color-border-card-hover);
+    box-shadow: 0 8px 22px rgba(60, 120, 255, 0.16);
     transform: translateY(-4px);
 }
 
 .pricing-card--featured {
-    border-color: var(--color-accent-neon);
-    background: rgba(245, 255, 26, 0.04);
+    border-color: var(--color-border-card);
+    background: rgba(100, 180, 255, 0.04);
 }
 
 .pricing-card--featured::before {
@@ -990,8 +991,8 @@ h3 {
 }
 
 .pricing-card--selected {
-    border-color: var(--color-accent-neon);
-    box-shadow: 0 0 24px rgba(245, 255, 26, 0.15);
+    border-color: var(--color-border-card-hover);
+    box-shadow: 0 8px 22px rgba(60, 120, 255, 0.16);
 }
 
 .pricing-card__name {
