@@ -714,20 +714,28 @@ h3 {
     box-shadow: 0 8px 22px rgba(60, 120, 255, 0.16);
 }
 
+.card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
 .card__icon {
     color: var(--color-accent-neon);
-    margin-bottom: 1.25rem;
+    flex-shrink: 0;
+    line-height: 0;
 }
 
 .card__icon svg {
-    width: 32px;
-    height: 32px;
+    width: 22px;
+    height: 22px;
 }
-
 
 .card__title {
     font-size: 1.3rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
 }
 
 .card__text {

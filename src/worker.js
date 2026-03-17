@@ -260,8 +260,9 @@ function renderSection(sec, idx) {
         } else {
             const cards = sec.items.map(item => {
                 let inner = '';
-                if (item.icon)   inner += `<div class="card__icon"><i data-lucide="${escAttr(item.icon)}" width="40" height="40"></i></div>`;
-                if (item.title)  inner += `<h3 class="card__title">${escHtml(item.title)}</h3>`;
+                const titleHtml = item.title ? `<h3 class="card__title">${escHtml(item.title)}</h3>` : '';
+                const iconHtml = item.icon ? `<div class="card__icon"><i data-lucide="${escAttr(item.icon)}"></i></div>` : '';
+                inner += `<div class="card__header">${titleHtml}${iconHtml}</div>`;
                 if (item.text)   inner += `<p class="card__text">${escHtml(item.text)}</p>`;
                 return `<div class="card">${inner}</div>`;
             }).join('');
