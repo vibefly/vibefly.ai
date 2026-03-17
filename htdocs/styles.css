@@ -684,8 +684,9 @@ h3 {
     position: relative;
     background: var(--color-light-bg);
     border: 1px solid var(--color-border-card);
+    border-top: 2px solid var(--color-accent-neon);
     border-radius: var(--border-radius);
-    padding: 3rem 2.5rem;
+    padding: 2rem 2rem 2.25rem;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
     transition: transform var(--transition-speed), border-color var(--transition-speed), box-shadow var(--transition-speed);
     overflow: hidden;
@@ -715,8 +716,13 @@ h3 {
 }
 
 .card__icon {
-    color: var(--color-accent-blue);
-    margin-bottom: 1.5rem;
+    color: var(--color-accent-neon);
+    margin-bottom: 1.25rem;
+}
+
+.card__icon svg {
+    width: 32px;
+    height: 32px;
 }
 
 
