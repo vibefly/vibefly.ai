@@ -364,6 +364,8 @@ h3 {
 /* ---------- Sections ---------- */
 .section {
     padding: var(--section-padding);
+    position: relative;
+    z-index: 1;
 }
 
 .section-heading {
@@ -644,7 +646,7 @@ h3 {
 
 /* ---------- Section alt background ---------- */
 .section--alt {
-    background: var(--color-light-bg);
+    background: transparent;
 }
 
 /* ---------- Dynamic section header ---------- */
