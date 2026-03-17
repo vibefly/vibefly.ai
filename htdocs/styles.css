@@ -1151,6 +1151,7 @@ h3 {
 }
 
 .launch-fee__card-total {
+    display: none;
     margin-top: 0.75rem;
     font-size: 0.82rem;
     color: var(--color-accent-neon);
