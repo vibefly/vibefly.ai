@@ -52,22 +52,22 @@
           "subheading": "",
           "items": [
             {
-              "icon": "palette",
+              "icon": "message-circle",
               "number": "01",
-              "title": "Design Direction",
-              "text": "We establish your brand’s visual identity — combining AI analysis with human creative direction to define the look and feel."
+              "title": "Tell Us About Your Business",
+              "text": "Share your story, services, and goals. We handle everything from there."
             },
             {
               "icon": "code-2",
               "number": "02",
-              "title": "Build & Deploy",
-              "text": "Your site is built and deployed automatically — fast, clean code pushed live to a global edge network."
+              "title": "We Build Your Site",
+              "text": "Expert design, AI-assisted builds, live on a global network in days."
             },
             {
-              "icon": "layers",
+              "icon": "refresh-cw",
               "number": "03",
-              "title": "Refine & Evolve",
-              "text": "Our AI agent continuously refines your site — updating content, optimizing performance, and adapting to your needs."
+              "title": "We Keep It Fresh",
+              "text": "Request updates anytime. We handle changes so you never have to log in."
             }
           ]
         },
