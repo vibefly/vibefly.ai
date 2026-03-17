@@ -13,6 +13,7 @@
     --color-border-card-hover: rgba(0, 220, 255, 0.9);
     --color-text-primary: #FFFFFF;
     --color-text-secondary: #AAAAAA;
+    --color-accent-green: #4ade80;
     --font-primary: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --transition-speed: 0.3s ease-in-out;
     --border-radius: 12px;
@@ -723,18 +724,19 @@ h3 {
 }
 
 .card__icon {
-    color: var(--color-accent-neon);
+    color: var(--color-accent-green);
     flex-shrink: 0;
     line-height: 0;
 }
 
 .card__icon svg {
-    width: 22px;
-    height: 22px;
+    width: 28px;
+    height: 28px;
 }
 
 .card__title {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+    color: var(--color-accent-green);
     margin-bottom: 0;
 }
 
@@ -1017,7 +1019,7 @@ h3 {
 
 .pricing-card__turnaround {
     font-size: 0.78rem;
-    color: #4ade80;
+    color: var(--color-accent-green);
     margin-top: -0.75rem;
 }
 
@@ -1041,7 +1043,7 @@ h3 {
     content: '✓';
     position: absolute;
     left: 0;
-    color: #4ade80;
+    color: var(--color-accent-green);
     font-weight: 700;
 }
 
