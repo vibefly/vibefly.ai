@@ -276,7 +276,7 @@ h3 {
     position: absolute;
     inset: -60px;
     background-image: radial-gradient(rgba(100, 180, 255, 0.5) 1.5px, transparent 1.5px);
-    background-size: 40px 40px;
+    background-size: 24px 24px;
     transform: rotate(-15deg);
     opacity: 0.25;
     filter: url(#grid-wave);
