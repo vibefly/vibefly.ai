@@ -16,6 +16,28 @@ export default {
     }
 };
 
+
+const pricingToggleScript = `<script>
+document.addEventListener('click',function(e){
+    var btn=e.target.closest('.pricing-toggle__btn');
+    if(!btn)return;
+    var wrap=document.getElementById('pricing-toggle-wrap');
+    var grid=wrap&&wrap.querySelector('.pricing-grid');
+    if(!wrap||!grid)return;
+    var isAnnual=btn.getAttribute('data-period')==='annual';
+    wrap.querySelectorAll('.pricing-toggle__btn').forEach(function(b){b.classList.toggle('is-active',b===btn);});
+    if(isAnnual){
+        wrap.classList.add('pricing-section--annual');
+        grid.querySelectorAll('.pricing-card__amount').forEach(function(el){el.textContent=el.getAttribute('data-annual')||el.textContent;});
+        grid.querySelectorAll('.pricing-card__period').forEach(function(el){el.textContent='/yr';});
+    }else{
+        wrap.classList.remove('pricing-section--annual');
+        grid.querySelectorAll('.pricing-card__amount').forEach(function(el){el.textContent=el.getAttribute('data-monthly')||el.textContent;});
+        grid.querySelectorAll('.pricing-card__period').forEach(function(el){el.textContent='/mo';});
+    }
+});
+<\/script>`;
+
 async function renderPage(env, url) {
     try {
         const [htmlRes, contentRes] = await Promise.all([
@@ -66,6 +88,7 @@ async function renderPage(env, url) {
             `$1${escAttr(description)}$2`);
         modifiedHtml = modifiedHtml.replace(/<script id="content-fetch">[\s\S]*?<\/script>\n?/, '');
         modifiedHtml = modifiedHtml.replace('</head>', `${ogTags}\n${inlineScripts}\n</head>`);
+        modifiedHtml = modifiedHtml.replace('</body>', pricingToggleScript + '</body>');
 
         // ── Body: HTMLRewriter ────────────────────────────────────────────────
         const navHtml = nav.map(item =>
