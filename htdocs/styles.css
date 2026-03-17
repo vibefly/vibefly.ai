@@ -990,7 +990,7 @@ h3 {
     content: '✓';
     position: absolute;
     left: 0;
-    color: var(--color-accent-neon);
+    color: #4ade80;
     font-weight: 700;
 }
 
