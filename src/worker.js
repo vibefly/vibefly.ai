@@ -60,7 +60,7 @@ async function renderPage(env, url) {
             if (imagesRes.ok) siteImages = await imagesRes.json();
         } catch { /* no images yet */ }
 
-        const pricingToggleFn = `<script>function pricingToggle(btn){var wrap=document.getElementById('pricing-toggle-wrap');var grid=wrap&&wrap.querySelector('.pricing-grid');if(!wrap||!grid)return;var isAnnual=btn.getAttribute('data-period')==='annual';wrap.querySelectorAll('.pricing-toggle__btn').forEach(function(b){b.classList.toggle('is-active',b===btn);});if(isAnnual){wrap.classList.add('pricing-section--annual');grid.querySelectorAll('.pricing-card__amount').forEach(function(el){el.textContent=el.getAttribute('data-annual')||el.textContent;});grid.querySelectorAll('.pricing-card__period').forEach(function(el){el.textContent='/yr';});}else{wrap.classList.remove('pricing-section--annual');grid.querySelectorAll('.pricing-card__amount').forEach(function(el){el.textContent=el.getAttribute('data-monthly')||el.textContent;});grid.querySelectorAll('.pricing-card__period').forEach(function(el){el.textContent='/mo';});}}<\/script>`;
+        const pricingToggleFn = `<script>function pricingToggle(btn){var wrap=document.getElementById('pricing-toggle-wrap');var grid=wrap&&wrap.querySelector('.pricing-grid');if(!wrap||!grid)return;var isAnnual=btn.getAttribute('data-period')==='annual';wrap.querySelectorAll('.pricing-toggle__btn').forEach(function(b){b.classList.toggle('is-active',b===btn);});if(isAnnual){wrap.classList.add('pricing-section--annual');grid.querySelectorAll('.pricing-card__amount').forEach(function(el){el.textContent=el.getAttribute('data-annual')||el.textContent;});grid.querySelectorAll('.pricing-card__period').forEach(function(el){el.textContent='/yr';});}else{wrap.classList.remove('pricing-section--annual');grid.querySelectorAll('.pricing-card__amount').forEach(function(el){el.textContent=el.getAttribute('data-monthly')||el.textContent;});grid.querySelectorAll('.pricing-card__period').forEach(function(el){el.textContent='/mo';});}}function lfSelect(card){document.querySelectorAll('.launch-fee__card').forEach(function(c){c.classList.remove('launch-fee__card--selected');});card.classList.add('launch-fee__card--selected');}function lfStep(btn,delta,base,extra,minPages){var card=btn.closest('.launch-fee__card');var countEl=card.querySelector('.launch-fee__stepper-count');var totalEl=card.querySelector('.launch-fee__card-total');var count=parseInt(countEl.textContent)+delta;if(count<minPages)count=minPages;countEl.textContent=count;totalEl.textContent='$'+(base+Math.max(0,count-minPages)*extra);}<\/script>`;
         const inlineScripts = `<script>window.__BUSINESS=${JSON.stringify(biz)};window.__FORM_CONFIG=${JSON.stringify(formCfg)};window.__IMAGES=${JSON.stringify(siteImages)};</script>` + pricingToggleFn;
 
         let modifiedHtml = html;
@@ -221,12 +221,14 @@ function renderSection(sec, idx) {
             let launchHtml = '';
             if (sec.launchFee) {
                 const lf = sec.launchFee;
-                const headerCols = (lf.columns || []).map((c, i) => i === 0 ? `<th></th>` : `<th>${escHtml(c)}</th>`).join('');
-                const bodyRows = (lf.rows || []).map(row =>
-                    `<tr>${row.map((cell, i) => i === 0 ? `<td>${escHtml(cell)}</td>` : `<td class="launch-fee__price">${escHtml(cell)}</td>`).join('')}</tr>`
-                ).join('');
-                const footnote = lf.footnote ? `<p class="launch-fee__footnote">${escHtml(lf.footnote)}</p>` : '';
-                launchHtml = `<div class="launch-fee"><p class="launch-fee__label">${escHtml(lf.heading || '')}</p><table class="launch-fee__table"><thead><tr>${headerCols}</tr></thead><tbody>${bodyRows}</tbody></table>${footnote}</div>`;
+                const lfCards = (lf.items || []).map((item, idx) => {
+                    const selClass = idx === 0 ? ' launch-fee__card--selected' : '';
+                    const stepper = item.basePages
+                        ? `<div class="launch-fee__stepper"><button class="launch-fee__stepper-btn" onclick="lfStep(this,-1,${item.price},${item.extraPagePrice||99},${item.basePages});event.stopPropagation()">−</button><span class="launch-fee__stepper-count">${item.basePages}</span><span class="launch-fee__stepper-label"> pages</span><button class="launch-fee__stepper-btn" onclick="lfStep(this,1,${item.price},${item.extraPagePrice||99},${item.basePages});event.stopPropagation()">+</button></div><p class="launch-fee__card-total">$${item.price}</p>`
+                        : '';
+                    return `<div class="launch-fee__card${selClass}" onclick="lfSelect(this)"><h4 class="launch-fee__card-name">${escHtml(item.name||'')}</h4><p class="launch-fee__card-price">$${item.price}</p><p class="launch-fee__card-desc">${escHtml(item.description||'')}</p>${stepper}</div>`;
+                }).join('');
+                launchHtml = `<div class="launch-fee"><p class="launch-fee__label">${escHtml(lf.heading||'')}</p><div class="launch-fee__cards">${lfCards}</div></div>`;
             }
 
             // Toggle
