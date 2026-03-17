@@ -736,7 +736,7 @@ h3 {
 
 .card__title {
     font-size: 1.5rem;
-    color: var(--color-accent-green);
+    color: var(--color-text-primary);
     margin-bottom: 0;
 }
 
