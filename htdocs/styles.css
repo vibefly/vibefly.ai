@@ -275,9 +275,16 @@ h3 {
 .hero-grid {
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(rgba(150, 200, 255, 0.6) 1.5px, transparent 1.5px);
+    background-image: radial-gradient(rgba(100, 180, 255, 0.45) 1.5px, transparent 1.5px);
     background-size: 40px 40px;
-    opacity: 0.7;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 10%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 10%, transparent 70%);
+    animation: grid-fade 6s ease-in-out infinite alternate;
+}
+
+@keyframes grid-fade {
+    0% { opacity: 0.4; }
+    100% { opacity: 0.8; }
 }
 
 /* Bottom gradient fade — disabled (hero-bg is now fixed) */
