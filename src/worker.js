@@ -261,7 +261,6 @@ function renderSection(sec, idx) {
             const cards = sec.items.map(item => {
                 let inner = '';
                 if (item.icon)   inner += `<div class="card__icon"><i data-lucide="${escAttr(item.icon)}" width="40" height="40"></i></div>`;
-                if (item.number) inner += `<div class="card__number">${escHtml(String(item.number))}</div>`;
                 if (item.title)  inner += `<h3 class="card__title">${escHtml(item.title)}</h3>`;
                 if (item.text)   inner += `<p class="card__text">${escHtml(item.text)}</p>`;
                 return `<div class="card">${inner}</div>`;
