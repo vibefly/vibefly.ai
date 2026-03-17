@@ -454,58 +454,6 @@ h3 {
 .section--contact {
     text-align: center;
     padding: 8rem 5%;
-    position: relative;
-    overflow: hidden;
-}
-
-.contact-orbs {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.section--contact > *:not(.contact-orbs) {
-    position: relative;
-    z-index: 1;
-}
-
-.contact-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0;
-    animation: orb-drift 14s ease-in-out infinite;
-}
-
-.contact-orb--1 {
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(60, 120, 255, 0.4) 0%, rgba(60, 120, 255, 0.1) 40%, transparent 70%);
-    top: -10%;
-    right: -5%;
-    animation-delay: -3s;
-    animation-duration: 16s;
-}
-
-.contact-orb--2 {
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(245, 255, 26, 0.25) 0%, rgba(245, 255, 26, 0.08) 40%, transparent 70%);
-    bottom: -10%;
-    left: -5%;
-    animation-delay: -7s;
-    animation-duration: 18s;
-}
-
-.contact-orb--3 {
-    width: 350px;
-    height: 350px;
-    background: radial-gradient(circle, rgba(0, 220, 255, 0.3) 0%, rgba(0, 220, 255, 0.08) 40%, transparent 70%);
-    top: 40%;
-    left: 30%;
-    animation-delay: -11s;
-    animation-duration: 20s;
 }
 
 .contact-subtext {
