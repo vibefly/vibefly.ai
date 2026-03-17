@@ -1037,20 +1037,20 @@ h3 {
 }
 
 .launch-fee__label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.18em;
     color: var(--color-text-secondary);
     text-align: center;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
 }
 
 .launch-fee__cards {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    max-width: 680px;
+    gap: 1.25rem;
+    max-width: 640px;
     margin: 0 auto;
 }
 
@@ -1058,111 +1058,104 @@ h3 {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--color-border-card);
     border-radius: var(--border-radius);
-    padding: 1.75rem 1.5rem;
+    padding: 2rem 1.75rem;
     cursor: pointer;
-    transition: border-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .launch-fee__card:hover {
     border-color: var(--color-border-card-hover);
-    transform: translateY(-2px);
 }
 
 .launch-fee__card--selected {
     border-color: var(--color-accent-neon);
-    box-shadow: 0 0 20px rgba(245, 255, 26, 0.12);
+    box-shadow: 0 0 24px rgba(245, 255, 26, 0.10);
 }
 
-.launch-fee__card__name {
-    font-size: 0.75rem;
+.launch-fee__card-name {
+    font-size: 0.7rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.18em;
     color: var(--color-text-secondary);
-    margin-bottom: 0.6rem;
-}
-
-.launch-fee__card__price {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    line-height: 1;
-    letter-spacing: -0.03em;
     margin-bottom: 0.75rem;
 }
 
-.launch-fee__card__desc {
+.launch-fee__card-price {
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: var(--color-text-primary);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 0.9rem;
+    font-family: var(--font-display);
+}
+
+.launch-fee__card-desc {
     font-size: 0.82rem;
     color: var(--color-text-secondary);
-    line-height: 1.5;
-    margin-bottom: 0;
+    line-height: 1.55;
+    flex: 1;
 }
 
 .launch-fee__stepper {
     display: none;
     align-items: center;
-    gap: 0.75rem;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(255,255,255,0.08);
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .launch-fee__card--selected .launch-fee__stepper {
     display: flex;
 }
 
-.launch-fee__stepper__label {
-    font-size: 0.78rem;
-    color: var(--color-text-secondary);
-    flex: 1;
-}
-
-.launch-fee__stepper__controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.launch-fee__stepper__btn {
-    width: 28px;
-    height: 28px;
+.launch-fee__stepper-btn {
+    width: 30px;
+    height: 30px;
     border-radius: 6px;
     border: 1px solid var(--color-border-card);
     background: none;
     color: var(--color-text-primary);
-    font-size: 1rem;
+    font-size: 1.1rem;
+    line-height: 1;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: border-color var(--transition-speed), color var(--transition-speed);
-    font-family: var(--font-primary);
+    flex-shrink: 0;
 }
 
-.launch-fee__stepper__btn:hover {
+.launch-fee__stepper-btn:hover {
     border-color: var(--color-accent-neon);
     color: var(--color-accent-neon);
 }
 
-.launch-fee__stepper__count {
-    font-size: 0.9rem;
+.launch-fee__stepper-count {
+    font-size: 1rem;
     font-weight: 700;
     color: var(--color-text-primary);
-    min-width: 1.5rem;
+    min-width: 1.25rem;
     text-align: center;
 }
 
-.launch-fee__card__total {
-    display: none;
+.launch-fee__stepper-label {
     font-size: 0.78rem;
-    color: var(--color-accent-neon);
-    font-weight: 700;
-    margin-top: 0.5rem;
+    color: var(--color-text-secondary);
+    flex: 1;
 }
 
-.launch-fee__card--selected.launch-fee__card--multipage .launch-fee__card__total {
-    display: block;
+.launch-fee__card-total {
+    margin-top: 0.75rem;
+    font-size: 0.82rem;
+    color: var(--color-accent-neon);
+    font-weight: 700;
+    letter-spacing: 0.02em;
 }
 
 @media (max-width: 600px) {
