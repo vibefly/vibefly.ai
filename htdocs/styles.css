@@ -720,17 +720,11 @@ h3 {
 }
 
 .card__number {
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: rgba(245, 255, 26, 0.08);
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    line-height: 1;
-    letter-spacing: -0.04em;
+    display: none;
 }
 
 .card__title {
+    font-size: 1.3rem;
     margin-bottom: 1rem;
 }
 
