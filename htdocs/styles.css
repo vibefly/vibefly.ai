@@ -279,13 +279,12 @@ h3 {
     background-size: 30px 30px;
     mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 10%, transparent 70%);
     -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 10%, transparent 70%);
-    animation: grid-zoom 6s ease-in-out infinite;
+    animation: grid-fade 6s ease-in-out infinite alternate;
 }
 
-@keyframes grid-zoom {
-    0%   { background-size: 28px 28px; opacity: 0.2; }
-    50%  { background-size: 56px 56px; opacity: 0.5; }
-    100% { background-size: 28px 28px; opacity: 0.2; }
+@keyframes grid-fade {
+    0%   { opacity: 0.2; }
+    100% { opacity: 0.45; }
 }
 
 /* Bottom gradient fade — disabled (hero-bg is now fixed) */
