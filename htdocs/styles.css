@@ -532,6 +532,12 @@ h3 {
 #cf-turnstile {
     display: flex;
     justify-content: center;
+    text-align: center;
+}
+
+#cf-turnstile iframe {
+    margin: 0 auto;
+    display: block;
 }
 
 /* ---------- Contact Sending State ---------- */
