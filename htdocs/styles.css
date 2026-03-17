@@ -156,14 +156,12 @@ h3 {
     align-items: center;
     justify-content: center;
     padding: 0 5%;
-    overflow: hidden;
 }
 
 .hero-bg {
-    position: absolute;
+    position: fixed;
     inset: 0;
     z-index: 0;
-    background-color: var(--color-dark-bg);
 }
 
 /* Global background orbs (fixed, visible across all sections) */
@@ -289,8 +287,8 @@ h3 {
     100% { opacity: 0.8; }
 }
 
-/* Bottom gradient fade to black */
-.hero-bg::after {
+/* Bottom gradient fade — disabled (hero-bg is now fixed) */
+.hero-bg__fade {
     content: '';
     position: absolute;
     bottom: 0;
