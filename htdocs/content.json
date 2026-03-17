@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "vibefly.ai — AI-Powered Websites by motiveFx",
-    "description": "AI-powered websites that accelerate business growth. Built and refined by intelligent agents. A motiveFx product."
+    "title": "vibefly.ai — Premium Websites Built for Small Business, Fast.",
+    "description": "Expert design meets AI efficiency. A real website, built for you, live in days — not months."
   },
   "theme": {
     "bg": "#000000",
@@ -33,8 +33,15 @@
   ],
   "business": {
     "name": "vibefly.ai",
-    "email": "hello@vibefly.ai",
-    "year": "2026"
+    "email": "info@vibefly.ai",
+    "year": "2026",
+    "phone": "",
+    "address": "",
+    "address1": "",
+    "address2": "",
+    "city": "",
+    "state": "",
+    "zip": ""
   },
   "hero": {
     "label": "Built for small business",
