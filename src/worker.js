@@ -226,8 +226,7 @@ function renderSection(sec, idx) {
                     const stepper = item.basePages
                         ? `<div class="launch-fee__stepper"><button class="launch-fee__stepper-btn" onclick="lfStep(this,-1,${item.price},${item.extraPagePrice||99},${item.basePages});event.stopPropagation()">−</button><span class="launch-fee__stepper-count">${item.basePages}</span><span class="launch-fee__stepper-label"> pages</span><button class="launch-fee__stepper-btn" onclick="lfStep(this,1,${item.price},${item.extraPagePrice||99},${item.basePages});event.stopPropagation()">+</button></div><p class="launch-fee__card-total">$${item.price}</p>`
                         : '';
-                    const priceEl = stepper ? '' : `<p class="launch-fee__card-price">$${item.price}</p>`;
-        return `<div class="launch-fee__card${selClass}" onclick="lfSelect(this)"><h4 class="launch-fee__card-name">${escHtml(item.name||'')}</h4>${priceEl}<p class="launch-fee__card-desc">${escHtml(item.description||'')}</p>${stepper}</div>`;
+        return `<div class="launch-fee__card${selClass}" onclick="lfSelect(this)"><h4 class="launch-fee__card-name">${escHtml(item.name||'')}</h4><p class="launch-fee__card-price">$${item.price}</p><p class="launch-fee__card-desc">${escHtml(item.description||'')}</p>${stepper}</div>`;
                 }).join('');
                 launchHtml = `<div class="launch-fee"><p class="launch-fee__label">${escHtml(lf.heading||'')}</p><div class="launch-fee__cards">${lfCards}</div></div>`;
             }
