@@ -277,12 +277,7 @@ h3 {
     inset: 0;
     background-image: radial-gradient(rgba(150, 200, 255, 0.6) 1.5px, transparent 1.5px);
     background-size: 40px 40px;
-    animation: grid-fade 6s ease-in-out infinite alternate;
-}
-
-@keyframes grid-fade {
-    0% { opacity: 0.4; }
-    100% { opacity: 0.8; }
+    opacity: 0.7;
 }
 
 /* Bottom gradient fade — disabled (hero-bg is now fixed) */
