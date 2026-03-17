@@ -19,7 +19,6 @@
             renderTurnstile();
         }
         if (window.lucide) try { lucide.createIcons(); } catch (e) {}
-        initPricingToggle();
         document.body.classList.add('content-loaded');
         return;
     }
@@ -520,8 +519,6 @@
         copyrightEl.textContent = data.footer.copyright;
     }
 
-    initPricingToggle();
-
     /* Render Lucide icons */
     if (window.lucide) {
         try { lucide.createIcons(); } catch (e) { console.warn('Lucide render error:', e); }
@@ -532,36 +529,6 @@
 })();
 
 
-/* ── Pricing toggle (monthly / annual) ── */
-function initPricingToggle() {
-    var wrap = document.getElementById('pricing-toggle-wrap');
-    if (!wrap) return;
-    var btns = wrap.querySelectorAll('.pricing-toggle__btn');
-    var grid = wrap.querySelector('.pricing-grid');
-    btns.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            var isAnnual = btn.dataset.period === 'annual';
-            btns.forEach(function (b) { b.classList.remove('is-active'); });
-            btn.classList.add('is-active');
-            if (isAnnual) {
-                grid.classList.add('pricing-section--annual');
-                wrap.classList.add('pricing-section--annual');
-                grid.querySelectorAll('.pricing-card__amount').forEach(function (el) {
-                    el.textContent = el.dataset.annual || el.textContent;
-                });
-                grid.querySelectorAll('.pricing-card__period').forEach(function (el) {
-                    el.textContent = '/yr';
-                });
-            } else {
-                grid.classList.remove('pricing-section--annual');
-                wrap.classList.remove('pricing-section--annual');
-                grid.querySelectorAll('.pricing-card__amount').forEach(function (el) {
-                    el.textContent = el.dataset.monthly || el.textContent;
-                });
-                grid.querySelectorAll('.pricing-card__period').forEach(function (el) {
-                    el.textContent = '/mo';
-                });
-            }
         });
     });
 }
