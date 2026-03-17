@@ -609,20 +609,28 @@ h3 {
 
 /* ---------- Footer ---------- */
 .site-footer {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
     padding: 2rem 5%;
     font-size: 0.8rem;
     color: var(--color-text-secondary);
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.footer-legal {
+    display: flex;
+    gap: 1rem;
+}
+
 .site-footer a {
-    text-decoration: underline;
+    color: var(--color-text-secondary);
     transition: color var(--transition-speed);
 }
 
 .site-footer a:hover {
-    color: var(--color-accent-neon);
+    color: var(--color-text-primary);
 }
 
 /* ---------- Section Reveal Animation ---------- */
