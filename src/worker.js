@@ -100,7 +100,7 @@ async function renderPage(env, url) {
         let tsHtml = '';
         if (formCfg.turnstileSiteKey) {
             const tsTheme = computeTurnstileTheme(content.theme);
-            tsHtml = `<div style="display:flex;justify-content:center;margin-top:0.5rem;"><div class="cf-turnstile" data-sitekey="${escAttr(formCfg.turnstileSiteKey)}" data-theme="${tsTheme}"></div></div>`;
+            tsHtml = `<div style="display:flex;justify-content:center;margin-top:1.25rem;"><div class="cf-turnstile" data-sitekey="${escAttr(formCfg.turnstileSiteKey)}" data-theme="${tsTheme}"></div></div>`;
         }
 
         const serviceAreas = (content.contact && content.contact.serviceAreas) || [];
