@@ -275,7 +275,7 @@ h3 {
 .hero-grid {
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(rgba(100, 180, 255, 0.5) 1.5px, transparent 1.5px);
+    background-image: radial-gradient(rgba(100, 180, 255, 0.65) 1.5px, transparent 1.5px);
     background-size: 30px 30px;
     mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 10%, transparent 70%);
     -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 10%, transparent 70%);
