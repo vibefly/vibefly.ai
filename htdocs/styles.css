@@ -672,6 +672,10 @@ h3 {
     line-height: 1.7;
 }
 
+#pricing .section__subheading {
+    color: var(--color-accent-green);
+}
+
 /* ---------- Cards grid (dynamic sections) ---------- */
 .cards-grid {
     display: grid;

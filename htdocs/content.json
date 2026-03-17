@@ -74,8 +74,8 @@
         {
           "id": "pricing",
           "type": "pricing",
-          "heading": "Introductory Pricing",
-          "subheading": "For a limited time only. Start your website today.",
+          "heading": "Get Started Today",
+          "subheading": "Introductory pricing, for a limited time.",
           "items": [
             {
               "name": "Starter",
