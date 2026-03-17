@@ -222,7 +222,7 @@ function renderSection(sec, idx) {
             if (sec.launchFee) {
                 const lf = sec.launchFee;
                 const lfCards = (lf.items || []).map((item, idx) => {
-                    const selClass = idx === 0 ? ' launch-fee__card--selected' : '';
+                    const selClass = '';
                     const stepper = item.basePages
                         ? `<div class="launch-fee__stepper"><button class="launch-fee__stepper-btn" onclick="lfStep(this,-1,${item.price},${item.extraPagePrice||99},${item.basePages});event.stopPropagation()">−</button><span class="launch-fee__stepper-count">${item.basePages}</span><span class="launch-fee__stepper-label"> pages</span><button class="launch-fee__stepper-btn" onclick="lfStep(this,1,${item.price},${item.extraPagePrice||99},${item.basePages});event.stopPropagation()">+</button></div><p class="launch-fee__card-total"></p>`
                         : '';
