@@ -1050,24 +1050,39 @@ h3 {
     width: 100%;
     max-width: 580px;
     margin: 0 auto;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--color-border-card);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.02);
 }
 
 .launch-fee__table th,
 .launch-fee__table td {
-    padding: 0.75rem 1.25rem;
-    border: 1px solid var(--color-border-card);
+    padding: 0.85rem 1.5rem;
+    border-bottom: 1px solid var(--color-border-card);
+    border-right: 1px solid var(--color-border-card);
     text-align: center;
     font-size: 0.9rem;
 }
 
+.launch-fee__table th:last-child,
+.launch-fee__table td:last-child {
+    border-right: none;
+}
+
+.launch-fee__table tbody tr:last-child td {
+    border-bottom: none;
+}
+
 .launch-fee__table th {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     color: var(--color-text-secondary);
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.04);
 }
 
 .launch-fee__table td:first-child {
@@ -1076,7 +1091,7 @@ h3 {
 }
 
 .launch-fee__table td.launch-fee__price {
-    color: var(--color-text-primary);
+    color: var(--color-accent-neon);
     font-weight: 700;
     font-size: 1rem;
 }
@@ -1085,7 +1100,8 @@ h3 {
     text-align: center;
     font-size: 0.78rem;
     color: var(--color-text-secondary);
-    margin-top: 0.6rem;
+    margin-top: 0.75rem;
+    opacity: 0.7;
 }
 
 /* ---------- Pricing Toggle ---------- */
