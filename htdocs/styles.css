@@ -529,6 +529,11 @@ h3 {
     opacity: 0;
 }
 
+#cf-turnstile {
+    display: flex;
+    justify-content: center;
+}
+
 /* ---------- Contact Sending State ---------- */
 .contact-sending {
     max-width: 700px;
