@@ -60,19 +60,16 @@
           "items": [
             {
               "icon": "message-circle",
-              "number": "01",
               "title": "Tell Your Story",
               "text": "Share your story, services, and goals. We handle everything from there."
             },
             {
-              "icon": "wand-2",
-              "number": "02",
-              "title": "Let Us Cook",
-              "text": "Expert design, AI-assisted builds, live on a global network in days."
+              "icon": "pencil-ruler",
+              "title": "Design and Build",
+              "text": "An expert designer and engineer will leverage our proprietary AI, and create you a world class website in days, not months."
             },
             {
               "icon": "clock",
-              "number": "03",
               "title": "Keep It Fresh",
               "text": "Request updates anytime. We handle changes so you never have to log in."
             }

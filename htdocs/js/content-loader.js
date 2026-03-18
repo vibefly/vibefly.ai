@@ -388,12 +388,6 @@
                             iconDiv.appendChild(i);
                             card.appendChild(iconDiv);
                         }
-                        if (item.number) {
-                            var numEl = document.createElement('div');
-                            numEl.className = 'card__number';
-                            numEl.textContent = item.number;
-                            card.appendChild(numEl);
-                        }
                         if (item.title) {
                             var titleEl = document.createElement('h3');
                             titleEl.className = 'card__title';
