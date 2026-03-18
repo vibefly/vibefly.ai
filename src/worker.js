@@ -62,7 +62,9 @@ async function renderPage(env, url) {
                     ).join('');
                     inputHtml = `<select id="${id}" name="${escAttr(field.name)}"${req}><option value="">${escHtml(field.placeholder || 'Select\u2026')}</option>${opts}</select>`;
                 } else {
-                    inputHtml = `<input type="${escAttr(field.type || 'text')}" id="${id}" name="${escAttr(field.name)}" placeholder="${escAttr(field.placeholder || '')}"${req}>`;
+                    const autocompleteMap = { name: 'name', email: 'email', phone: 'tel', company: 'organization' };
+                    const ac = autocompleteMap[field.name] ? ` autocomplete="${autocompleteMap[field.name]}"` : '';
+                    inputHtml = `<input type="${escAttr(field.type || 'text')}" id="${id}" name="${escAttr(field.name)}" placeholder="${escAttr(field.placeholder || '')}"${req}${ac}>`;
                 }
                 return `<label for="${id}">${escHtml(field.label || '')}</label>${inputHtml}`;
             }).join('\n');
@@ -119,6 +121,8 @@ async function renderPage(env, url) {
 </head>
 <body class="content-loaded">
 
+    <a class="skip-nav" href="#main-content">Skip to main content</a>
+
     <div class="bg-orbs" aria-hidden="true">
         <div class="bg-orb bg-orb--1"></div>
         <div class="bg-orb bg-orb--2"></div>
@@ -130,16 +134,18 @@ async function renderPage(env, url) {
             <a href="#hero" class="logo">
                 <span>${escHtml(logo.name || biz.name || '')}</span><span class="logo-dot">${escHtml(logo.tld || '')}</span>
             </a>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-                <span class="nav-toggle__bar"></span>
-                <span class="nav-toggle__bar"></span>
-                <span class="nav-toggle__bar"></span>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
+                <span class="nav-toggle__bar" aria-hidden="true"></span>
+                <span class="nav-toggle__bar" aria-hidden="true"></span>
+                <span class="nav-toggle__bar" aria-hidden="true"></span>
             </button>
-            <nav class="main-nav" id="main-nav" role="navigation">
+            <nav class="main-nav" id="main-nav" role="navigation" aria-label="Main navigation">
                 <ul class="nav-list">${navHtml}</ul>
             </nav>
         </div>
     </header>
+
+    <main id="main-content">
 
     <section id="hero" class="hero" data-section="hero">
         <div class="hero-bg">
@@ -168,6 +174,8 @@ async function renderPage(env, url) {
             <button type="submit" class="primary-shiny-btn cta-button--wide">${submitLabel}</button>
         </form>
     </section>
+
+    </main>
 
     <footer class="site-footer">
         <span class="footer-copy">&copy; ${escHtml(biz.year || new Date().getFullYear().toString())} ${escHtml(biz.name || '')}</span>
@@ -239,10 +247,11 @@ function renderSection(sec, idx) {
             gridHtml = `<div id="pricing-toggle-wrap">${launchHtml}${toggleHtml}<div class="pricing-grid">${cards}</div></div>`;
         } else if (isTestimonial) {
             const cards = sec.items.map(item => {
-                const stars = Array(item.stars || 5).fill(
-                    `<svg width="20" height="20" viewBox="0 0 20 20" fill="var(--color-star)"><path d="M10 1l2.5 5.5H18l-4.5 3.5 1.5 5.5L10 13l-5 2.5 1.5-5.5L2 6.5h5.5z"/></svg>`
+                const starCount = item.stars || 5;
+                const stars = Array(starCount).fill(
+                    `<svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="var(--color-star)"><path d="M10 1l2.5 5.5H18l-4.5 3.5 1.5 5.5L10 13l-5 2.5 1.5-5.5L2 6.5h5.5z"/></svg>`
                 ).join('');
-                return `<div class="testimonial-card"><div class="testimonial-card__stars">${stars}</div><blockquote class="testimonial-card__quote">${escHtml(item.quote || '')}</blockquote><div class="testimonial-card__author"><strong>${escHtml(item.author || '')}</strong><span>${escHtml(item.role || '')}</span></div></div>`;
+                return `<div class="testimonial-card"><div class="testimonial-card__stars" aria-label="${starCount} out of 5 stars">${stars}</div><blockquote class="testimonial-card__quote">${escHtml(item.quote || '')}</blockquote><div class="testimonial-card__author"><strong>${escHtml(item.author || '')}</strong><span>${escHtml(item.role || '')}</span></div></div>`;
             }).join('');
             gridHtml = `<div class="testimonials-grid">${cards}</div>`;
         } else {
@@ -312,6 +321,8 @@ async function renderLegalPage(env, url) {
 </head>
 <body class="content-loaded">
 
+    <a class="skip-nav" href="#main-content">Skip to main content</a>
+
     <div class="bg-orbs" aria-hidden="true">
         <div class="bg-orb bg-orb--1"></div>
         <div class="bg-orb bg-orb--2"></div>
@@ -323,18 +334,18 @@ async function renderLegalPage(env, url) {
             <a href="/" class="logo">
                 <span>${escHtml(logo.name || biz.name || '')}</span><span class="logo-dot">${escHtml(logo.tld || '')}</span>
             </a>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-                <span class="nav-toggle__bar"></span>
-                <span class="nav-toggle__bar"></span>
-                <span class="nav-toggle__bar"></span>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
+                <span class="nav-toggle__bar" aria-hidden="true"></span>
+                <span class="nav-toggle__bar" aria-hidden="true"></span>
+                <span class="nav-toggle__bar" aria-hidden="true"></span>
             </button>
-            <nav class="main-nav" id="main-nav" role="navigation">
+            <nav class="main-nav" id="main-nav" role="navigation" aria-label="Main navigation">
                 <ul class="nav-list">${navHtml}</ul>
             </nav>
         </div>
     </header>
 
-    <main class="legal-page">
+    <main id="main-content" class="legal-page">
         <div class="container">
             <h1>${escHtml(heading)}</h1>
             ${effectiveDate ? `<p class="legal-page__date">Effective date: ${escHtml(effectiveDate)}</p>` : ''}

@@ -510,8 +510,8 @@ h3 {
     transition: border var(--transition-speed), box-shadow var(--transition-speed), background var(--transition-speed);
 }
 
-.form-row input:focus,
-.form-row textarea:focus {
+.form-row input:focus-visible,
+.form-row textarea:focus-visible {
     outline: none;
     border-color: var(--color-border-card-hover);
     background: rgba(5, 8, 20, 0.92);
@@ -848,9 +848,9 @@ h3 {
     transition: border var(--transition-speed), box-shadow var(--transition-speed), background var(--transition-speed);
 }
 
-.contact-form input:focus,
-.contact-form select:focus,
-.contact-form textarea:focus {
+.contact-form input:focus-visible,
+.contact-form select:focus-visible,
+.contact-form textarea:focus-visible {
     outline: none;
     border-color: var(--color-border-card-hover);
     background: rgba(5, 8, 20, 0.92);
@@ -1323,4 +1323,29 @@ h3 {
     color: var(--color-text-secondary);
     line-height: 1.7;
     margin-bottom: 0.75rem;
+}
+
+/* === WCAG 2.1 AA — Accessibility === */
+
+.skip-nav {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    padding: 0.5rem 1.25rem;
+    background: var(--color-accent-neon);
+    color: #000;
+    font-weight: 700;
+    font-size: 0.9rem;
+    z-index: 10000;
+    border-radius: 0 0 4px 4px;
+    text-decoration: none;
+}
+.skip-nav:focus {
+    top: 0;
+}
+
+*:focus-visible {
+    outline: 2px solid var(--color-accent-neon);
+    outline-offset: 3px;
+    border-radius: 2px;
 }

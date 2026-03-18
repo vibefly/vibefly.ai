@@ -15,6 +15,8 @@
 </head>
 <body>
 
+    <a class="skip-nav" href="#main-content">Skip to main content</a>
+
     <!-- Global background orbs -->
     <div class="bg-orbs" aria-hidden="true">
         <div class="bg-orb bg-orb--1"></div>
@@ -28,16 +30,18 @@
             <a href="#hero" class="logo">
                 <span data-content="logo.name">vibefly</span><span class="logo-dot" data-content="logo.tld">.ai</span>
             </a>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-                <span class="nav-toggle__bar"></span>
-                <span class="nav-toggle__bar"></span>
-                <span class="nav-toggle__bar"></span>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
+                <span class="nav-toggle__bar" aria-hidden="true"></span>
+                <span class="nav-toggle__bar" aria-hidden="true"></span>
+                <span class="nav-toggle__bar" aria-hidden="true"></span>
             </button>
-            <nav class="main-nav" id="main-nav" role="navigation">
+            <nav class="main-nav" id="main-nav" role="navigation" aria-label="Main navigation">
                 <ul class="nav-list" data-content-nav></ul>
             </nav>
         </div>
     </header>
+
+    <main id="main-content">
 
     <!-- Hero -->
     <section id="hero" class="hero" data-section="hero">
@@ -68,6 +72,8 @@
             <button type="submit" class="primary-shiny-btn cta-button--wide">Send Message</button>
         </form>
     </section>
+
+    </main>
 
     <!-- Footer -->
     <footer class="site-footer">
