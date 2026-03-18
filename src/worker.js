@@ -40,6 +40,10 @@ async function renderPage(env, url) {
         const contact = content.contact || {};
         const footer  = content.footer  || {};
 
+        const creditHtml = footer.creditName
+            ? `<p class="footer-credit"><span>${escHtml(footer.creditText || 'Built by')}</span> <a href="${escAttr(footer.creditUrl || '#')}" target="_blank" rel="noopener">${escHtml(footer.creditName)}</a></p>`
+            : '';
+
         const heroCtaHref = escAttr(hero.ctaHref || '#contact');
         const heroCtaText = escHtml(hero.ctaText || 'Get Started');
         const submitLabel = escHtml(formCfg.submitLabel || 'Send Message');
@@ -162,11 +166,12 @@ async function renderPage(env, url) {
     </section>
 
     <footer class="site-footer">
-        <p class="footer-copy">&copy; ${escHtml(biz.year || '2026')} ${escHtml(biz.name || 'vibefly.ai')}</p>
+        <p class="footer-copy">&copy; ${escHtml(biz.year || new Date().getFullYear().toString())} ${escHtml(biz.name || '')}</p>
         <nav class="footer-legal" aria-label="Legal">
             <a href="/terms">Terms</a>
             <a href="/privacy">Privacy</a>
         </nav>
+        ${creditHtml}
     </footer>
 
 </body>
