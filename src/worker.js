@@ -53,6 +53,8 @@ async function renderPage(env, url) {
             fieldsHtml = formCfg.fields.map(field => {
                 const id = `contact-${field.name}`;
                 const req = field.required ? ' required' : '';
+                const autocompleteMap = { name: 'name', email: 'email', phone: 'tel', company: 'organization' };
+                const ac = autocompleteMap[field.name] ? ` autocomplete="${autocompleteMap[field.name]}"` : '';
                 let inputHtml;
                 if (field.type === 'textarea') {
                     inputHtml = `<textarea id="${id}" name="${escAttr(field.name)}" rows="${field.rows || 4}" placeholder="${escAttr(field.placeholder || '')}"${req}></textarea>`;
@@ -62,8 +64,6 @@ async function renderPage(env, url) {
                     ).join('');
                     inputHtml = `<select id="${id}" name="${escAttr(field.name)}"${req}><option value="">${escHtml(field.placeholder || 'Select\u2026')}</option>${opts}</select>`;
                 } else {
-                    const autocompleteMap = { name: 'name', email: 'email', phone: 'tel', company: 'organization' };
-                    const ac = autocompleteMap[field.name] ? ` autocomplete="${autocompleteMap[field.name]}"` : '';
                     inputHtml = `<input type="${escAttr(field.type || 'text')}" id="${id}" name="${escAttr(field.name)}" placeholder="${escAttr(field.placeholder || '')}"${req}${ac}>`;
                 }
                 return `<label for="${id}">${escHtml(field.label || '')}</label>${inputHtml}`;
