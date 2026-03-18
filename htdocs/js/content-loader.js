@@ -166,9 +166,10 @@
     }
 
     /* ── Dynamic sections — render pages.home.sections into #sections-container ── */
+    /* Skip if worker already SSR'd the sections */
     var sectionsContainer = document.getElementById('sections-container');
     var sections = (data.pages && data.pages.home && data.pages.home.sections) || [];
-    if (sectionsContainer && sections.length > 0) {
+    if (sectionsContainer && sections.length > 0 && !sectionsContainer.hasChildNodes()) {
         sections.forEach(function (sec, idx) {
             var isTestimonial = sec.items && sec.items.length > 0 && sec.items[0].quote !== undefined;
             var isPricing = sec.type === 'pricing';
