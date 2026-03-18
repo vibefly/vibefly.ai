@@ -268,7 +268,7 @@
                                 b.classList.remove('is-active');
                             });
                             btn.classList.add('is-active');
-                            var isAnnual = period === 'annual';
+                            var isAnnual = btn.dataset.period === 'annual';
                             grid.querySelectorAll('.pricing-card__amount').forEach(function (el) {
                                 el.textContent = isAnnual ? el.dataset.annual : el.dataset.monthly;
                             });
