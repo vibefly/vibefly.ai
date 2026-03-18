@@ -108,7 +108,6 @@ async function renderPage(env, url) {
     ${pricingToggleFn}
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
     <script src="js/lucide.min.js" defer onload="lucide.createIcons()"></script>
-    <script src="js/content-loader.js" defer></script>
     <script src="js/main.js" defer></script>
     <style>body{opacity:0}body.content-loaded{opacity:1;transition:opacity .15s}</style>
     <noscript><style>body{opacity:1}</style></noscript>
@@ -166,12 +165,12 @@ async function renderPage(env, url) {
     </section>
 
     <footer class="site-footer">
-        <p class="footer-copy">&copy; ${escHtml(biz.year || new Date().getFullYear().toString())} ${escHtml(biz.name || '')}</p>
-        <nav class="footer-legal" aria-label="Legal">
-            <a href="/terms">Terms</a>
-            <a href="/privacy">Privacy</a>
-        </nav>
-        ${creditHtml}
+        <span class="footer-copy">&copy; ${escHtml(biz.year || new Date().getFullYear().toString())} ${escHtml(biz.name || '')}</span>
+        <span class="footer-sep" aria-hidden="true">|</span>
+        <a href="/terms">Terms</a>
+        <span class="footer-sep" aria-hidden="true">|</span>
+        <a href="/privacy">Privacy</a>
+        ${creditHtml ? `<span class="footer-sep" aria-hidden="true">|</span>${creditHtml}` : ''}
     </footer>
 
 </body>

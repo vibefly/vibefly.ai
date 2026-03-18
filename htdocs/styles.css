@@ -611,6 +611,8 @@ h3 {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.footer-sep { opacity: 0.3; user-select: none; }
+
 .footer-legal {
     display: flex;
     gap: 1rem;
