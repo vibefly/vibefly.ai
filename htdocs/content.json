@@ -254,8 +254,28 @@
           "body": "We may update these Terms from time to time. Continued use of the service after changes are posted means you accept the updated terms."
         },
         {
-          "heading": "8. Governing Law",
-          "body": "These Terms are governed by the laws of the State of Connecticut."
+          "heading": "8. Domain Registration and Ownership",
+          "body": "When you purchase domain registration through vibefly.ai, the domain is registered using your name and contact information — you are the rightful owner. The domain is held and managed in our Cloudflare account on your behalf for the duration of your service.\n\nWHOIS privacy protection is always enabled at no additional charge. Your personal contact information will not appear in public domain records.\n\nIf your subscription ends or you request a transfer, we will initiate a domain transfer to the registrar of your choice within 5 business days of receiving your request or final billing period end. You are responsible for providing a valid transfer destination. We will hold the domain for up to 90 days after service ends while awaiting transfer instructions. After 90 days, we reserve the right to release or let the domain expire if no transfer has been completed.\n\nYou are responsible for any transfer fees charged by the receiving registrar. We do not charge a transfer fee."
+        },
+        {
+          "heading": "9. Indemnification",
+          "body": "You agree to indemnify and hold harmless vibefly.ai and motiveFx LLC, its officers, employees, and agents, from any claims, damages, losses, or expenses (including reasonable legal fees) arising out of or relating to: (a) the content you provide for your website, (b) your use of our services, (c) your violation of these Terms, or (d) any claim that your content infringes the intellectual property or other rights of a third party."
+        },
+        {
+          "heading": "10. Accessibility",
+          "body": "vibefly.ai builds websites using modern, semantic HTML and follows general web best practices. However, we do not guarantee that any website we build will comply with the Americans with Disabilities Act (ADA), Web Content Accessibility Guidelines (WCAG), or any other accessibility standard or regulation.\n\nYou are responsible for ensuring that your website meets any accessibility requirements applicable to your business. If you have specific accessibility requirements, please let us know before work begins and we will do our best to accommodate them."
+        },
+        {
+          "heading": "11. Force Majeure",
+          "body": "vibefly.ai and motiveFx LLC are not liable for any failure or delay in performance caused by circumstances beyond our reasonable control, including but not limited to internet or infrastructure outages, third-party service failures (including Cloudflare, AWS, or other providers), natural disasters, acts of government, or other events outside our control."
+        },
+        {
+          "heading": "12. Dispute Resolution",
+          "body": "We'd rather resolve any issue quickly and directly. If you have a concern, please contact us at info@vibefly.ai first and give us a reasonable opportunity to address it.\n\nIf a dispute cannot be resolved informally, it will be subject to binding arbitration under the rules of the American Arbitration Association (AAA), conducted in Connecticut. You waive any right to participate in a class action lawsuit or class-wide arbitration. Nothing in this section prevents either party from seeking emergency injunctive relief in a court of competent jurisdiction."
+        },
+        {
+          "heading": "13. Governing Law",
+          "body": "These Terms are governed by the laws of the State of Connecticut, without regard to conflict of law principles."
         },
         {
           "heading": "Questions?",
@@ -297,7 +317,23 @@
           "body": "We may update this policy occasionally. The effective date at the top of this page will reflect the latest revision."
         },
         {
-          "heading": "8. Governing Law",
+          "heading": "8. Email Communications",
+          "body": "When you contact us through our website or become a client, we may send you transactional emails related to your project, account, or service updates. We do not send marketing emails without your consent.\n\nIf you receive any email from us you didn't expect, contact us at info@vibefly.ai and we'll take care of it."
+        },
+        {
+          "heading": "9. California Privacy Rights (CCPA)",
+          "body": "If you are a California resident, you have the right to know what personal information we collect, request deletion of your personal information, and opt out of any sale of personal information. We do not sell personal information. To exercise your rights, contact us at info@vibefly.ai. We will respond within 45 days."
+        },
+        {
+          "heading": "10. International Users",
+          "body": "Our services are operated in the United States. If you are accessing our site from outside the U.S., please be aware that your information may be transferred to and processed in the United States, where data protection laws may differ from those in your country.\n\nIf you are located in the European Economic Area (EEA), the United Kingdom, or Switzerland, by using our services you consent to this transfer. Our legal basis for processing your data is the performance of a contract and our legitimate business interests. You have the right to access, correct, or request deletion of your data by contacting us at info@vibefly.ai."
+        },
+        {
+          "heading": "11. Age Restrictions",
+          "body": "Our services are intended for use by businesses and adults aged 18 and over. We do not knowingly collect personal information from anyone under 18. If you believe a minor has submitted information to us, please contact us at info@vibefly.ai and we will promptly delete it."
+        },
+        {
+          "heading": "12. Governing Law",
           "body": "This policy is governed by the laws of the State of Connecticut."
         },
         {
