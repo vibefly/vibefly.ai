@@ -216,137 +216,57 @@
                     // Launch fee table
                     if (sec.launchFee) {
                         var lf = sec.launchFee;
-                        var lfDiv = document.createElement('div');
-                        lfDiv.className = 'launch-fee';
-                        var lfLabel = document.createElement('p');
-                        lfLabel.className = 'launch-fee__label';
-                        lfLabel.textContent = lf.heading || '';
-                        lfDiv.appendChild(lfLabel);
-                        var table = document.createElement('table');
-                        table.className = 'launch-fee__table';
-                        var thead = document.createElement('thead');
-                        var hrow = document.createElement('tr');
-                        (lf.columns || []).forEach(function (col) {
-                            var th = document.createElement('th');
-                            th.textContent = col;
-                            hrow.appendChild(th);
-                        });
-                        thead.appendChild(hrow);
-                        table.appendChild(thead);
-                        var tbody = document.createElement('tbody');
-                        (lf.rows || []).forEach(function (row) {
-                            var tr = document.createElement('tr');
-                            row.forEach(function (cell, i) {
-                                var td = document.createElement('td');
-                                if (i > 0) td.className = 'launch-fee__price';
-                                td.textContent = cell;
-                                tr.appendChild(td);
-                            });
-                            tbody.appendChild(tr);
-                        });
-                        table.appendChild(tbody);
-                        lfDiv.appendChild(table);
-                        if (lf.footnote) {
-                            var fn = document.createElement('p');
-                            fn.className = 'launch-fee__footnote';
-                            fn.textContent = lf.footnote;
-                            lfDiv.appendChild(fn);
-                        }
-                        outerWrap.appendChild(lfDiv);
+                        var colsHtml = (lf.columns || []).map(function (c) { return '<th>' + c + '</th>'; }).join('');
+                        var rowsHtml = (lf.rows || []).map(function (row) {
+                            return '<tr>' + row.map(function (cell, i) {
+                                return '<td' + (i > 0 ? ' class="launch-fee__price"' : '') + '>' + cell + '</td>';
+                            }).join('') + '</tr>';
+                        }).join('');
+                        outerWrap.innerHTML += '<div class="launch-fee">' +
+                            '<p class="launch-fee__label">' + (lf.heading || '') + '</p>' +
+                            '<table class="launch-fee__table"><thead><tr>' + colsHtml + '</tr></thead><tbody>' + rowsHtml + '</tbody></table>' +
+                            (lf.footnote ? '<p class="launch-fee__footnote">' + lf.footnote + '</p>' : '') +
+                            '</div>';
                     }
 
                     // Toggle
-                    var toggle = document.createElement('div');
-                    toggle.className = 'pricing-toggle';
-                    ['monthly', 'annual'].forEach(function (period, i) {
-                        var btn = document.createElement('button');
-                        btn.className = 'pricing-toggle__btn' + (i === 0 ? ' is-active' : '');
-                        btn.dataset.period = period;
-                        btn.textContent = period.charAt(0).toUpperCase() + period.slice(1);
-                        btn.addEventListener('click', function () {
-                            toggle.querySelectorAll('.pricing-toggle__btn').forEach(function (b) {
-                                b.classList.remove('is-active');
-                            });
-                            btn.classList.add('is-active');
-                            var isAnnual = btn.dataset.period === 'annual';
-                            grid.querySelectorAll('.pricing-card__amount').forEach(function (el) {
-                                el.textContent = isAnnual ? el.dataset.annual : el.dataset.monthly;
-                            });
-                            grid.querySelectorAll('.pricing-card__period').forEach(function (el) {
-                                el.textContent = isAnnual ? '/yr' : '/mo';
-                            });
+                    outerWrap.innerHTML += '<div class="pricing-toggle">' +
+                        '<button class="pricing-toggle__btn is-active" data-period="monthly">Monthly</button>' +
+                        '<button class="pricing-toggle__btn" data-period="annual">Annual</button>' +
+                        '</div>';
+
+                    // Cards
+                    var cardsHtml = sec.items.map(function (item) {
+                        var bulletsHtml = (item.bullets || []).map(function (b) { return '<li>' + b + '</li>'; }).join('');
+                        return '<div class="pricing-card' + (item.featured ? ' pricing-card--featured' : '') + '">' +
+                            '<h3 class="pricing-card__name">' + item.name + '</h3>' +
+                            '<div class="pricing-card__price">' +
+                                '<span class="pricing-card__amount" data-monthly="' + (item.price || '') + '" data-annual="' + (item.annualPrice || item.price || '') + '">' + (item.price || '') + '</span>' +
+                                '<span class="pricing-card__period">/mo</span>' +
+                            '</div>' +
+                            (item.annualSavings ? '<p class="pricing-card__savings">' + item.annualSavings + '</p>' : '') +
+                            (item.turnaround ? '<p class="pricing-card__turnaround">' + item.turnaround + '</p>' : '') +
+                            (bulletsHtml ? '<ul class="pricing-card__bullets">' + bulletsHtml + '</ul>' : '') +
+                            (item.cta ? '<a class="pricing-card__cta" href="' + (item.ctaHref || '#contact') + '">' + item.cta + '</a>' : '') +
+                            '</div>';
+                    }).join('');
+                    outerWrap.innerHTML += '<div class="pricing-grid">' + cardsHtml + '</div>';
+
+                    // Toggle click handler
+                    outerWrap.addEventListener('click', function (e) {
+                        var btn = e.target.closest('.pricing-toggle__btn');
+                        if (!btn) return;
+                        outerWrap.querySelectorAll('.pricing-toggle__btn').forEach(function (b) { b.classList.remove('is-active'); });
+                        btn.classList.add('is-active');
+                        var isAnnual = btn.dataset.period === 'annual';
+                        outerWrap.querySelectorAll('.pricing-card__amount').forEach(function (el) {
+                            el.textContent = isAnnual ? el.dataset.annual : el.dataset.monthly;
                         });
-                        toggle.appendChild(btn);
-                    });
-                    outerWrap.appendChild(toggle);
-
-                    grid.className = 'pricing-grid';
-                    sec.items.forEach(function (item) {
-                        var card = document.createElement('div');
-                        card.className = 'pricing-card' + (item.featured ? ' pricing-card--featured' : '');
-
-                        var nameEl = document.createElement('h3');
-                        nameEl.className = 'pricing-card__name';
-                        nameEl.textContent = item.name;
-                        card.appendChild(nameEl);
-
-                        var priceWrap = document.createElement('div');
-                        priceWrap.className = 'pricing-card__price';
-                        var amount = document.createElement('span');
-                        amount.className = 'pricing-card__amount';
-                        amount.textContent = item.price;
-                        amount.dataset.monthly = item.price || '';
-                        amount.dataset.annual = item.annualPrice || item.price || '';
-                        var period = document.createElement('span');
-                        period.className = 'pricing-card__period';
-                        period.textContent = '/mo';
-                        priceWrap.appendChild(amount);
-                        priceWrap.appendChild(period);
-                        card.appendChild(priceWrap);
-
-                        if (item.annualSavings) {
-                            var savings = document.createElement('p');
-                            savings.className = 'pricing-card__savings';
-                            savings.textContent = item.annualSavings;
-                            card.appendChild(savings);
-                        }
-
-                        if (item.turnaround) {
-                            var tEl = document.createElement('p');
-                            tEl.className = 'pricing-card__turnaround';
-                            tEl.textContent = item.turnaround;
-                            card.appendChild(tEl);
-                        }
-
-                        if (item.bullets && item.bullets.length) {
-                            var ul = document.createElement('ul');
-                            ul.className = 'pricing-card__bullets';
-                            item.bullets.forEach(function (b) {
-                                var li = document.createElement('li');
-                                li.textContent = b;
-                                ul.appendChild(li);
-                            });
-                            card.appendChild(ul);
-                        }
-
-                        if (item.cta) {
-                            var cta = document.createElement('a');
-                            cta.className = 'pricing-card__cta';
-                            cta.href = item.ctaHref || '#contact';
-                            cta.textContent = item.cta;
-                            card.appendChild(cta);
-                        }
-
-                        card.addEventListener('click', function () {
-                            grid.querySelectorAll('.pricing-card').forEach(function (c) {
-                                c.classList.remove('pricing-card--selected');
-                            });
-                            card.classList.add('pricing-card--selected');
+                        outerWrap.querySelectorAll('.pricing-card__period').forEach(function (el) {
+                            el.textContent = isAnnual ? '/yr' : '/mo';
                         });
-
-                        grid.appendChild(card);
                     });
-                    outerWrap.appendChild(grid);
+
                     container.appendChild(outerWrap);
                 } else if (isTestimonial) {
                     grid.className = 'testimonials-grid';
