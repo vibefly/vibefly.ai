@@ -218,9 +218,5 @@
     "thankYouSubtext": "We’ll respond within one business day.",
     "errorMessage": "Something went wrong. Please try again or email us directly."
   },
-  "footer": {
-    "creditText": "Built by",
-    "creditName": "motiveFx",
-    "creditUrl": "https://motivefx.com"
-  }
+  "footer": {}
 }
