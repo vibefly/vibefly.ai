@@ -455,10 +455,5 @@
     document.body.classList.add('content-loaded');
 })();
 
-
-        });
-    });
-}
-
 /* Safety fallback — show page even if content.json fails */
 setTimeout(function () { document.body.classList.add('content-loaded'); }, 800);
