@@ -23,32 +23,19 @@ async function renderPage(env, url) {
 
         const content = await contentRes.json();
 
-        const biz     = content.business || {};
-        const formCfg = content.form     || {};
+        const biz = content.business || {};
+        const formCfg = content.form || {};
         if (!formCfg.thankYouSub && formCfg.thankYouSubtext) formCfg.thankYouSub = formCfg.thankYouSubtext;
         if (!formCfg.thankYouSubtext && formCfg.thankYouSub) formCfg.thankYouSubtext = formCfg.thankYouSub;
 
         const sections = (content.pages && content.pages.home && content.pages.home.sections) || [];
-        const nav      = Array.isArray(content.nav) ? content.nav : [];
+        const nav = Array.isArray(content.nav) ? content.nav : [];
 
-        const titleText   = (content.meta && content.meta.title)       || biz.name || '';
+        const titleText = (content.meta && content.meta.title) || biz.name || '';
         const description = (content.meta && content.meta.description) || '';
-        const canonical   = url.origin + url.pathname;
+        const canonical = url.origin + url.pathname;
 
-        const logo    = content.logo    || {};
-        const hero    = content.hero    || {};
-        const contact = content.contact || {};
-        const footer  = content.footer  || {};
-
-        const creditHtml = footer.creditName
-            ? `<p class="footer-credit"><span>${escHtml(footer.creditText || 'Built by')}</span> <a href="${escAttr(footer.creditUrl || '#')}" target="_blank" rel="noopener">${escHtml(footer.creditName)}</a></p>`
-            : '';
-
-        const heroCtaHref = escAttr(hero.ctaHref || '#contact');
-        const heroCtaText = escHtml(hero.ctaText || 'Get Started');
-        const submitLabel = escHtml(formCfg.submitLabel || 'Send Message');
-
-        // ── Build content fragments ────────────────────────────────────────────
+        // ── Build content fragments ───────────────────────────────────────────
 
         const navHtml = nav.map(item =>
             `<li><a class="nav-link" href="${escAttr(item.href || '#')}">${escHtml(item.label || '')}</a></li>`
@@ -59,7 +46,7 @@ async function renderPage(env, url) {
         let fieldsHtml = '';
         if (formCfg.fields) {
             fieldsHtml = formCfg.fields.map(field => {
-                const id  = `contact-${field.name}`;
+                const id = `contact-${field.name}`;
                 const req = field.required ? ' required' : '';
                 let inputHtml;
                 if (field.type === 'textarea') {
@@ -73,7 +60,7 @@ async function renderPage(env, url) {
                     inputHtml = `<input type="${escAttr(field.type || 'text')}" id="${id}" name="${escAttr(field.name)}" placeholder="${escAttr(field.placeholder || '')}"${req}>`;
                 }
                 return `<label for="${id}">${escHtml(field.label || '')}</label>${inputHtml}`;
-            }).join('\n            ');
+            }).join('\n');
         }
 
         let tsHtml = '';
@@ -87,13 +74,26 @@ async function renderPage(env, url) {
             `<meta property="og:url" content="${escAttr(canonical)}">`,
             `<meta property="og:title" content="${escAttr(titleText)}">`,
             `<meta property="og:description" content="${escAttr(description)}">`,
-        ].join('\n    ');
+        ].join('\n');
 
         const inlineScripts = `<script>window.__BUSINESS=${JSON.stringify(biz)};window.__FORM_CONFIG=${JSON.stringify(formCfg)};window.__IMAGES=[];</script>`;
 
+        // Pricing toggle function
         const pricingToggleFn = `<script>function pricingToggle(btn){var wrap=document.getElementById('pricing-toggle-wrap');var grid=wrap&&wrap.querySelector('.pricing-grid');if(!wrap||!grid)return;var isAnnual=btn.getAttribute('data-period')==='annual';wrap.querySelectorAll('.pricing-toggle__btn').forEach(function(b){b.classList.toggle('is-active',b===btn);});if(isAnnual){wrap.classList.add('pricing-section--annual');grid.querySelectorAll('.pricing-card__amount').forEach(function(el){el.textContent=el.getAttribute('data-annual')||el.textContent;});grid.querySelectorAll('.pricing-card__period').forEach(function(el){el.textContent='/yr';});}else{wrap.classList.remove('pricing-section--annual');grid.querySelectorAll('.pricing-card__amount').forEach(function(el){el.textContent=el.getAttribute('data-monthly')||el.textContent;});grid.querySelectorAll('.pricing-card__period').forEach(function(el){el.textContent='/mo';});}}function lfSelect(card){document.querySelectorAll('.launch-fee__card').forEach(function(c){c.classList.remove('launch-fee__card--selected');});card.classList.add('launch-fee__card--selected');}function lfStep(btn,delta,base,extra,minPages){var card=btn.closest('.launch-fee__card');var countEl=card.querySelector('.launch-fee__stepper-count');var totalEl=card.querySelector('.launch-fee__card-total');var count=parseInt(countEl.textContent)+delta;if(count<minPages)count=minPages;countEl.textContent=count;var extraPages=count-minPages;if(extraPages>0){totalEl.textContent='Total: $'+(base+extraPages*extra);totalEl.style.display='block';}else{totalEl.style.display='none';}}<\/script>`;
 
-        // ── Build complete HTML ────────────────────────────────────────────────
+        const logo = content.logo || {};
+        const hero = content.hero || {};
+        const contact = content.contact || {};
+        const footer = content.footer || {};
+        const submitLabel = escHtml(formCfg.submitLabel || 'Send Message');
+        const heroCtaHref = escAttr(hero.ctaHref || '#contact');
+        const heroCtaText = escHtml(hero.ctaText || 'Get Started');
+
+        const creditHtml = footer.creditName
+            ? `<p class="footer-credit"><span>${escHtml(footer.creditText || 'Built by')}</span> <a href="${escAttr(footer.creditUrl || '#')}" target="_blank" rel="noopener">${escHtml(footer.creditName)}</a></p>`
+            : '';
+
+        // ── Build complete HTML ───────────────────────────────────────────────
 
         const html = `<!DOCTYPE html>
 <html lang="en">
@@ -103,7 +103,7 @@ async function renderPage(env, url) {
     <title>${escHtml(titleText)}</title>
     <meta name="description" content="${escAttr(description)}">
     ${ogTags}
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="template.css">
     ${inlineScripts}
     ${pricingToggleFn}
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
@@ -220,11 +220,11 @@ function renderSection(sec, idx) {
             const toggleHtml = `<div class="pricing-toggle"><button class="pricing-toggle__btn is-active" data-period="monthly" onclick="pricingToggle(this)">Monthly</button><button class="pricing-toggle__btn" data-period="annual" onclick="pricingToggle(this)">Annual</button></div>`;
 
             const cards = sec.items.map(item => {
-                const featured   = item.featured ? ' pricing-card--featured' : '';
+                const featured = item.featured ? ' pricing-card--featured' : '';
                 const turnaround = item.turnaround ? `<p class="pricing-card__turnaround">${escHtml(item.turnaround)}</p>` : '';
-                const savings    = item.annualSavings ? `<p class="pricing-card__savings">${escHtml(item.annualSavings)}</p>` : '';
-                const bullets    = (item.bullets || []).map(b => `<li>${escHtml(b)}</li>`).join('');
-                const cta        = item.cta ? `<a class="pricing-card__cta" href="${escAttr(item.ctaHref || '#contact')}">${escHtml(item.cta)}</a>` : '';
+                const savings = item.annualSavings ? `<p class="pricing-card__savings">${escHtml(item.annualSavings)}</p>` : '';
+                const bullets = (item.bullets || []).map(b => `<li>${escHtml(b)}</li>`).join('');
+                const cta = item.cta ? `<a class="pricing-card__cta" href="${escAttr(item.ctaHref || '#contact')}">${escHtml(item.cta)}</a>` : '';
                 return `<div class="pricing-card${featured}">` +
                     `<h3 class="pricing-card__name">${escHtml(item.name || '')}</h3>` +
                     `<div class="pricing-card__price"><span class="pricing-card__amount" data-monthly="${escAttr(item.price || '')}" data-annual="${escAttr(item.annualPrice || item.price || '')}">${escHtml(item.price || '')}</span><span class="pricing-card__period">/mo</span></div>` +
@@ -245,7 +245,7 @@ function renderSection(sec, idx) {
             const cards = sec.items.map(item => {
                 let inner = '';
                 const titleHtml = item.title ? `<h3 class="card__title">${escHtml(item.title)}</h3>` : '';
-                const iconHtml  = item.icon  ? `<div class="card__icon"><i data-lucide="${escAttr(item.icon)}"></i></div>` : '';
+                const iconHtml = item.icon ? `<div class="card__icon"><i data-lucide="${escAttr(item.icon)}"></i></div>` : '';
                 inner += `<div class="card__header">${titleHtml}${iconHtml}</div>`;
                 if (item.text) inner += `<p class="card__text">${escHtml(item.text)}</p>`;
                 return `<div class="card">${inner}</div>`;

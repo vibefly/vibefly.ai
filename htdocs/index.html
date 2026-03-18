@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vibefly.ai</title>
     <meta name="description" content="">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="template.css">
     <script id="content-fetch">window.__CONTENT = fetch('content.json').then(function(r) { return r.ok ? r.json() : Promise.reject(); });</script>
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
     <script src="js/lucide.min.js" defer onload="lucide.createIcons()"></script>
@@ -72,11 +72,10 @@
 
     <!-- Footer -->
     <footer class="site-footer">
-        <p class="footer-copy">© <span data-content="business.year">2026</span> vibefly.ai</p>
-        <nav class="footer-legal" aria-label="Legal">
-            <a href="/terms">Terms</a>
-            <a href="/privacy">Privacy</a>
-        </nav>
+        <p>
+            <span data-content="footer.creditText">Built by</span>
+            <a data-content-footer-credit href="https://motivefx.com" target="_blank" rel="noopener">motiveFx</a>
+        </p>
     </footer>
 
 </body>

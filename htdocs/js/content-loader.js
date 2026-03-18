@@ -166,13 +166,11 @@
     }
 
     /* ── Dynamic sections — render pages.home.sections into #sections-container ── */
-    /* Skip if worker already SSR'd the sections */
     var sectionsContainer = document.getElementById('sections-container');
     var sections = (data.pages && data.pages.home && data.pages.home.sections) || [];
-    if (sectionsContainer && sections.length > 0 && !sectionsContainer.hasChildNodes()) {
+    if (sectionsContainer && sections.length > 0) {
         sections.forEach(function (sec, idx) {
             var isTestimonial = sec.items && sec.items.length > 0 && sec.items[0].quote !== undefined;
-            var isPricing = sec.type === 'pricing';
             var useAlt = idx % 2 === 1;
 
             var section = document.createElement('section');
@@ -210,66 +208,7 @@
             /* Items grid */
             if (sec.items && sec.items.length > 0) {
                 var grid = document.createElement('div');
-                if (isPricing) {
-                    var outerWrap = document.createElement('div');
-                    outerWrap.id = 'pricing-toggle-wrap';
-
-                    // Launch fee table
-                    if (sec.launchFee) {
-                        var lf = sec.launchFee;
-                        var colsHtml = (lf.columns || []).map(function (c) { return '<th>' + c + '</th>'; }).join('');
-                        var rowsHtml = (lf.rows || []).map(function (row) {
-                            return '<tr>' + row.map(function (cell, i) {
-                                return '<td' + (i > 0 ? ' class="launch-fee__price"' : '') + '>' + cell + '</td>';
-                            }).join('') + '</tr>';
-                        }).join('');
-                        outerWrap.innerHTML += '<div class="launch-fee">' +
-                            '<p class="launch-fee__label">' + (lf.heading || '') + '</p>' +
-                            '<table class="launch-fee__table"><thead><tr>' + colsHtml + '</tr></thead><tbody>' + rowsHtml + '</tbody></table>' +
-                            (lf.footnote ? '<p class="launch-fee__footnote">' + lf.footnote + '</p>' : '') +
-                            '</div>';
-                    }
-
-                    // Toggle
-                    outerWrap.innerHTML += '<div class="pricing-toggle">' +
-                        '<button class="pricing-toggle__btn is-active" data-period="monthly">Monthly</button>' +
-                        '<button class="pricing-toggle__btn" data-period="annual">Annual</button>' +
-                        '</div>';
-
-                    // Cards
-                    var cardsHtml = sec.items.map(function (item) {
-                        var bulletsHtml = (item.bullets || []).map(function (b) { return '<li>' + b + '</li>'; }).join('');
-                        return '<div class="pricing-card' + (item.featured ? ' pricing-card--featured' : '') + '">' +
-                            '<h3 class="pricing-card__name">' + item.name + '</h3>' +
-                            '<div class="pricing-card__price">' +
-                                '<span class="pricing-card__amount" data-monthly="' + (item.price || '') + '" data-annual="' + (item.annualPrice || item.price || '') + '">' + (item.price || '') + '</span>' +
-                                '<span class="pricing-card__period">/mo</span>' +
-                            '</div>' +
-                            (item.annualSavings ? '<p class="pricing-card__savings">' + item.annualSavings + '</p>' : '') +
-                            (item.turnaround ? '<p class="pricing-card__turnaround">' + item.turnaround + '</p>' : '') +
-                            (bulletsHtml ? '<ul class="pricing-card__bullets">' + bulletsHtml + '</ul>' : '') +
-                            (item.cta ? '<a class="pricing-card__cta" href="' + (item.ctaHref || '#contact') + '">' + item.cta + '</a>' : '') +
-                            '</div>';
-                    }).join('');
-                    outerWrap.innerHTML += '<div class="pricing-grid">' + cardsHtml + '</div>';
-
-                    // Toggle click handler
-                    outerWrap.addEventListener('click', function (e) {
-                        var btn = e.target.closest('.pricing-toggle__btn');
-                        if (!btn) return;
-                        outerWrap.querySelectorAll('.pricing-toggle__btn').forEach(function (b) { b.classList.remove('is-active'); });
-                        btn.classList.add('is-active');
-                        var isAnnual = btn.dataset.period === 'annual';
-                        outerWrap.querySelectorAll('.pricing-card__amount').forEach(function (el) {
-                            el.textContent = isAnnual ? el.dataset.annual : el.dataset.monthly;
-                        });
-                        outerWrap.querySelectorAll('.pricing-card__period').forEach(function (el) {
-                            el.textContent = isAnnual ? '/yr' : '/mo';
-                        });
-                    });
-
-                    container.appendChild(outerWrap);
-                } else if (isTestimonial) {
+                if (isTestimonial) {
                     grid.className = 'testimonials-grid';
                     sec.items.forEach(function (item) {
                         var card = document.createElement('div');
@@ -321,6 +260,12 @@
                             i.setAttribute('height', '40');
                             iconDiv.appendChild(i);
                             card.appendChild(iconDiv);
+                        }
+                        if (item.number) {
+                            var numEl = document.createElement('div');
+                            numEl.className = 'card__number';
+                            numEl.textContent = item.number;
+                            card.appendChild(numEl);
                         }
                         if (item.title) {
                             var titleEl = document.createElement('h3');
