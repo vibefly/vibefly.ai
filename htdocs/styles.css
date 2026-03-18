@@ -163,6 +163,7 @@ h3 {
     position: fixed;
     inset: 0;
     z-index: 0;
+    pointer-events: none;
 }
 
 /* Global background orbs (fixed, visible across all sections) */
