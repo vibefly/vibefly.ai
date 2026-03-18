@@ -609,12 +609,18 @@ h3 {
 
 /* ---------- Footer ---------- */
 .site-footer {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     padding: 2rem 5%;
     font-size: 0.8rem;
     color: var(--color-text-secondary);
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
+
+.footer-sep { opacity: 0.3; user-select: none; }
 
 .site-footer a {
     text-decoration: underline;
