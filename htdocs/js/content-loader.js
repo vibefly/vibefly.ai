@@ -263,6 +263,19 @@
                         btn.className = 'pricing-toggle__btn' + (i === 0 ? ' is-active' : '');
                         btn.dataset.period = period;
                         btn.textContent = period.charAt(0).toUpperCase() + period.slice(1);
+                        btn.addEventListener('click', function () {
+                            toggle.querySelectorAll('.pricing-toggle__btn').forEach(function (b) {
+                                b.classList.remove('is-active');
+                            });
+                            btn.classList.add('is-active');
+                            var isAnnual = period === 'annual';
+                            grid.querySelectorAll('.pricing-card__amount').forEach(function (el) {
+                                el.textContent = isAnnual ? el.dataset.annual : el.dataset.monthly;
+                            });
+                            grid.querySelectorAll('.pricing-card__period').forEach(function (el) {
+                                el.textContent = isAnnual ? '/yr' : '/mo';
+                            });
+                        });
                         toggle.appendChild(btn);
                     });
                     outerWrap.appendChild(toggle);
