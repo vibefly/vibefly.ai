@@ -19,6 +19,37 @@ export function escAttr(str) {
     return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 }
 
+// ── Security headers ───────────────────────────────────────────────────────
+
+const securityHeaders = {
+    'X-Content-Type-Options': 'nosniff',
+    'X-Frame-Options': 'SAMEORIGIN',
+    'Referrer-Policy': 'strict-origin-when-cross-origin',
+    'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+    'Content-Security-Policy': [
+        "default-src 'self'",
+        "script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com",
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+        "font-src https://fonts.gstatic.com",
+        "frame-src https://challenges.cloudflare.com",
+        "img-src 'self' data: https:",
+        "connect-src 'self'",
+    ].join('; '),
+};
+
+// ── HTML response ──────────────────────────────────────────────────────────
+
+export function htmlResponse(html, status = 200) {
+    return new Response(html, {
+        status,
+        headers: {
+            'Content-Type': 'text/html;charset=UTF-8',
+            'Cache-Control': 'no-store',
+            ...securityHeaders,
+        },
+    });
+}
+
 // ── JSON responses ──────────────────────────────────────────────────────────
 
 export function jsonOk() {
@@ -93,7 +124,7 @@ export async function handleSubmit(request, env) {
     try {
         const formData = await request.formData();
 
-        const systemFields = new Set(['_gotcha', 'cf-turnstile-response', 'first_name', 'last_name']);
+        const systemFields = new Set(['_gotcha', '_hp', 'cf-turnstile-response', 'first_name', 'last_name']);
         const firstName = (formData.get('first_name') || '').trim();
         const lastName  = (formData.get('last_name')  || '').trim();
         const name = (formData.get('name') || [firstName, lastName].filter(Boolean).join(' ')).trim();
